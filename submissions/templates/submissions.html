@@ -1,6 +1,24 @@
 <h1>Index for Submissions</h1>
-<ul>
-{% for s in submissions  %}
-    <li>{{ s.story }}</li>
-{% endfor %}
-</ul>
+
+<form>
+	<input type='text'><input type='text'><input type='text'>
+	<br>
+	<table>
+		<tr>
+		<th>Id</th>
+		<th>story</td>
+		<th>Disposition</th>
+		<th>Publisher<th>
+		</tr>
+	{% for s in submissions  %}
+		<tr>
+		<td>{{s.id}}</td>
+		<td>{{ s.story }}</td>
+		<td>{{s.disposition.disposition }}</td>
+		<td>{{s.publisher.publisher}}<td>
+		</tr>
+	{% endfor %}
+	</table>
+	<input type='submit' value='Go For It'>
+	<input type='submit' value='Went For It'>
+</form>

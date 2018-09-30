@@ -26,10 +26,11 @@ def publishers(request):
     return render(request, 'publishers.html', context)
 
 def submissions(request):
-    for s in Submission.objects.filter(id__lte=25):
-        print (str(s.id) + ' ' + s.story )    
+    for s in Submission.objects.select_related('disposition').filter(id__lte=25):
+        print (str(s.id) + ' ' + s.story + ' ' + s.disposition.disposition)    
 
-    submissions_dict = Submission.objects.filter(id__lte=25)
-    context = {'submissions': submissions_dict.values()}
+    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(id__lte=19)
+    print( submissions_dict)
+    context = {'submissions': submissions_dict}
     return render(request, 'submissions.html', context)
 

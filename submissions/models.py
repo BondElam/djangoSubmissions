@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 
-# Create your models here.
 class Disposition(models.Model):
     disposition = models.CharField(max_length=30, unique=True)
     
@@ -18,7 +17,8 @@ class Submission(models.Model):
     word_count = models.IntegerField(null=True)  
     file = models.CharField(max_length=50)
     date_submitted = models.DateField(default=date.today)
-    disposition_date = models.DateField(blank=True, null=True) 
-    publisher = models.ForeignKey('Publisher', on_delete=models.PROTECT)  
+    disposition_date = models.DateField(blank=True, null=True)  
+    publisher = models.ForeignKey('Publisher', on_delete=models.PROTECT) 
     disposition = models.ForeignKey('Disposition', on_delete=models.PROTECT) 
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+
