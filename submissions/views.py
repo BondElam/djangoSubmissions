@@ -2,6 +2,18 @@ from django.shortcuts import render
 from .models import Disposition, Publisher, Submission
 # from django.http import HttpResponse
 
+# This should be the only place you need to make changes.
+width_dict = {"id_width": '40px',
+    "story_width": '250px',
+    "words_width":'60px',
+    "file_width": '177px',
+    "publisher_width": '141px',
+    "date_submitted_width": '95px',
+    "disposition_width": '100px',
+    "disposition_date_width": '95px',
+    "scrollbar_width": '15px',
+}
+
 def dispositions(request):
     current_user = request.user
     print("current user: " + str(current_user))
@@ -26,11 +38,9 @@ def publishers(request):
     return render(request, 'publishers.html', context)
 
 def submissions(request):
-    for s in Submission.objects.select_related('disposition').filter(id__lte=25):
-        print (str(s.id) + ' ' + s.story + ' ' + s.disposition.disposition)    
 
-    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(id__lte=19)
-    print( submissions_dict)
-    context = {'submissions': submissions_dict}
+    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').all().order_by('id')
+    context = {'submissions': submissions_dict,
+               'w': width_dict,}
     return render(request, 'submissions.html', context)
 

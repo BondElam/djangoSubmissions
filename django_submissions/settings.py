@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print('base directory: ' + BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -115,15 +116,23 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
+
+DATE_FORMAT = 'Y-m-d'
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# added by me
+# STATIC_ROOT = os.path.join(BASE_DIR, 'submissions')
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'submissions'),   
+# )
 
 # my_project/settings.py
 LOGIN_REDIRECT_URL = 'home'

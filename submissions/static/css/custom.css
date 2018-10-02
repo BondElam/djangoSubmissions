@@ -1,0 +1,228 @@
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+	font-size: 3em;
+	letter-spacing: -2px;
+	margin-bottom: 30px;
+	text-align: center;
+	color: #337ab7;;
+}
+
+.div-center {
+	margin: 0 auto;
+	width: 400px; /* must include width to work */
+	text-align: center;
+}
+
+nav {
+	width: 100%;
+	height: 27px;
+	margin: 0px;
+	padding: 0px;
+	background-color: #449d44;
+	position: absolute;
+	z-index: 9999;
+	font-size: small;
+}
+
+.dropdownmenu {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+ul li {
+	background-color: #449d44;
+	width: 100px;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+	text-align: center;
+	list-style: none;
+	font-size: small;
+}
+
+ul li a {
+	color: white;
+	text-decoration: none;
+	display: block;
+}
+
+.dimmed {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+ul li a:hover {
+	background-color: #337ab7;
+	color: white;
+}
+
+ul li ul li {
+	display: none;
+	text-align: left;
+	width: 150px;
+	border-bottom: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+	border-left: 1px solid #AAAAAA;
+	background-color: #EEEEEE;
+}
+
+ul li ul li a {
+	padding-left: 10px;
+}
+
+ul li:hover ul li {
+	display: block;
+}
+
+ul li ul li a {
+	color: black;
+}
+
+body {
+	background-color: #f0f0f0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+	margin: 0px;
+	padding: 0px;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.edit-tbody input {
+	height: 100%;
+}
+
+/* All the table css */
+
+table {
+	margin: auto;
+	background-color: #d0d0d0;
+	margin-bottom: 20px;
+	table-layout:fixed;
+}
+
+thead {
+	display: block;
+}
+
+tbody {
+	display: block;
+	height: 400px;
+	overflow-y: auto; /* Trigger vertical scroll    */
+	overflow-x: hidden; /* Hide the horizontal scroll */
+	background-color: #d0d0d0;
+}
+
+tr {
+	background-color: #e0e0e0;
+}
+
+table td {
+	/*padding-right:5px;*/
+	white-space: nowrap; 
+	word-wrap: break-word;
+	overflow: hidden;
+	text-align: left;
+}
+
+table th {
+	/*padding-right:5px;*/
+	white-space: nowrap; 
+	word-wrap: break-word;
+	overflow: hidden;
+	text-align: left;
+}
+
+
+/*tr:nth-child(even) {
+    background-color:#e0e0e0;
+}*/
+
+/* All the button css */
+/*.btn-primary {*/
+button {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	/*}
+.btn {*/
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.popup {
+	/*display: none; */
+	/*border: 1px solid black;*/
+	/*padding: 10px;*/
+	/*padding-bottom: 20px;;*/
+	/*width: 500px;*/
+	position: absolute;
+	/*  	padding-left: 10px;
+  	padding-right: 10px;*/
+	padding: 10px;
+	text-align: center;
+	/*top: 100px;*/
+	/*left: 50%;*/
+	/*margin-left: -125px;*/
+	background-color: #f0f0f0;
+	box-shadow: 10px 10px 5px #AAAAAA;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	/* from tooltiptext */
+	visibility: hidden;
+	/*width: 120px;*/
+	/*background-color: black;*/
+	color: #111;
+	text-align: center;
+	border-radius: 6px;
+	/* Position the tooltip text - see examples below! */
+	position: absolute;
+	z-index: 1;
+	display: none;
+}
+
+/* Tooltip container */
+#pop-container {
+	position: relative;
+	display: inline-block;
+	/*display:none;*/
+	visibility: hidden;
+	/*border-bottom: 1px dotted black;  If you want dots under the hoverable text */
+}
+
+#tblEditPublisher {
+	background-color: #f0f0f0;
+}
+
+#tblEditPublisher tr {
+	background-color: #f0f0f0;
+}

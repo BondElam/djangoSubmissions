@@ -1,24 +1,46 @@
-<h1>Index for Submissions</h1>
+{% extends 'base.html' %} 
+{% block content %}
 
-<form>
-	<input type='text'><input type='text'><input type='text'>
-	<br>
-	<table>
-		<tr>
-		<th>Id</th>
-		<th>story</td>
-		<th>Disposition</th>
-		<th>Publisher<th>
-		</tr>
-	{% for s in submissions  %}
-		<tr>
-		<td>{{s.id}}</td>
-		<td>{{ s.story }}</td>
-		<td>{{s.disposition.disposition }}</td>
-		<td>{{s.publisher.publisher}}<td>
-		</tr>
-	{% endfor %}
+<h1 style='text-align: center;'>Index for Submissions</h1>
+
+<form style='margin: 0 auto;width:1000px'>
+	{% csrf_token %}
+	<div style='display: inline; width: 10px; text-align: center;'>
+		<input type='text' style='width: 20px;'> <input type='text'
+			style='width: 40px;'> <input type='text' value='hello'>
+	</div>
+	<table id='table-submissions'>
+		<thead>
+			<tr>
+				<th style='min-width:{{w.id_width}}; max-width:{{w.id_width}};'>Id</th>
+				<th style='min-width:{{w.story_width}};max-width:{{w.story_width}};'>Story</th>
+				<th style='min-width:{{w.words_width}};max-width:{{w.words_width}};'>Words</th>
+				<th style='min-width:{{w.file_width}};max-width:{{w.file_width}};'>File</th>
+				<th style='min-width:{{w.publisher_width}};max-width:{{w.publisher_width}};'>Publisher</th>
+				<th style='min-width:{{w.date_submitted_width}};max-width:{{w.date_submitted_width}};'>Date Submit</th>
+				<th style='min-width:{{w.disposition_width}};max-width:{{w.disposition_width}};'>Disposition</th>
+				<th style='min-width:{{w.disposition_date_width}};max-width:{{w.disposition_date_width}};'>Disp Date</th>
+				<th style='min-width:{{w.scrollbar_width}};max-width:{{w.scrollbar_width}};'></th>
+			</tr>
+		</thead>
+		<tbody>	
+			{% for s in submissions %}
+			<tr>
+				<td style='min-width:{{w.id_width}};max-width:{{w.id_width}};'>{{s.id}}</td>
+				<td style='min-width:{{w.story_width}};max-width:{{w.story_width}};'>{{s.story }}</td>
+				<td style='min-width:{{w.words_width}};max-width:{{w.words_width}};'>{{s.word_count }}</td>
+				<td style='min-width:{{w.file_width}};max-width:{{w.file_width}};'>{{s.file }}</td>
+				<td style='min-width:{{w.publisher_width}};max-width:{{w.publisher_width}};'>{{s.publisher.publisher }}</td>
+				<td style='min-width:{{w.date_submitted_width}};max-width:{{w.date_submitted_width}};'>{{s.date_submitted}}</td>
+				<td style='min-width:{{w.disposition_width}};max-width:{{w.disposition_width}};'>{{s.disposition.disposition }}</td>
+				<td style='min-width:{{w.disposition_date_width}};max-width:{{w.disposition_date_width}};'>{{s.disposition_date }}</td>
+				<td style='min-width:{{w.scrollbar_width}};{{w.scrollbar_width}};max-width:{{w.scroll_bar_width}}''></td>
+			</tr>
+			{% endfor %}
+		</tbody>
 	</table>
-	<input type='submit' value='Go For It'>
-	<input type='submit' value='Went For It'>
+		<input type='submit' value='Go For It'> <input type='submit'
+		value='Went For It'>
+	<button onclick=testButton()>Click Me!</button>
 </form>
+{% endblock %}
