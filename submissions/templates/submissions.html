@@ -3,13 +3,19 @@
 
 <h1 style='text-align: center;'>Index for Submissions</h1>
 
-<form style='margin: 0 auto;width:1000px'>
+<form action='/submissions/search/' method='post' style='margin: 0 auto;width:1000px'>
 	{% csrf_token %}
-	<div style='display: inline; width: 10px; text-align: center;'>
-		<input type='text' style='width: 20px;'> <input type='text'
-			style='width: 40px;'> <input type='text' value='hello'>
+	<div style='display:inline;'>
+		<input name='search_id' class='search_box' type='text' style='width:{{w.id_width}};' disabled> 
+		<input name='search_story' class='search_box' type='text' style='width:{{w.story_width}};'>
+		<input name='search_words' class='search_box' type='text' style='width:{{w.words_width}};'>
+		<input name='search_file' class='search_box' type='text' style='width:{{w.file_width}};'>
+		<input name='search_publisher' class='search_box' type='text' style='width:{{w.publisher_width}};'>
+		<input name='search_date_submitted' type='text' style='width:{{w.date_submitted_width}};'>
+		<input name='disposition' class='search_box' type='text' style='width:{{w.disposition_width}};'>
+		<input name='search_disposition_date' class='search_box' type='text' style='width:{{w.disposition_date_width}};'>
 	</div>
-	<table id='table-submissions'>
+	<table id='table-submissions' >
 		<thead>
 			<tr>
 				<th style='min-width:{{w.id_width}}; max-width:{{w.id_width}};'>Id</th>
@@ -39,8 +45,13 @@
 			{% endfor %}
 		</tbody>
 	</table>
-		<input type='submit' value='Go For It'> <input type='submit'
-		value='Went For It'>
-	<button onclick=testButton()>Click Me!</button>
+	<div style='text-align: center;'>
+		<button name='btn_search' type='submit'>Search</button>
+		<button name='btn_clear' type='submit'>Clear</button>
+		<button name='btn_add' onclick=testButton()>Add</button>
+		<button name='btn_edit' type='submit'>Edit</button>
+		<button name='btn_delete' type='submit'>Delete</button>
+		<button name='btn_other_pubs' type='submit'>Other Pubs</button>
+	</div>
 </form>
 {% endblock %}

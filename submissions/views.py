@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Disposition, Publisher, Submission
-# from django.http import HttpResponse
+from django.http import HttpResponse
 
 # This should be the only place you need to make changes.
 width_dict = {"id_width": '40px',
@@ -43,4 +43,15 @@ def submissions(request):
     context = {'submissions': submissions_dict,
                'w': width_dict,}
     return render(request, 'submissions.html', context)
+
+def search(request):
+    for key in request.POST:
+        print(key + ": " + request.POST[key])
+
+    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(id__gte='200').order_by('id')
+    context = {'submissions': submissions_dict,
+               'w': width_dict,}
+    return render(request, 'submissions.html', context)
+
+    
 
