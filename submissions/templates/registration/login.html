@@ -3,10 +3,12 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 <div class='div-center' style='text-align:center'>
-	<h2>Login Now</h2>
+	<h2>Login</h2>
 	<form method="post">
 	  {% csrf_token %}
-	  {{ form.as_p }}
+	  <table class='table-forms'>
+	  {{ form.as_table }}
+	  </table>
 	  <button type="submit">Login</button>
 	</form>
 </div>

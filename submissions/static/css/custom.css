@@ -106,7 +106,7 @@ body {
 
 /* All the table css */
 
-table {
+#table-submissions {
 	margin: auto;
 	background-color: #d0d0d0;
 	margin-top:5px;
@@ -114,11 +114,11 @@ table {
 	table-layout:fixed;
 }
 
-thead {
+#table-submissions thead {
 	display: block;
 }
 
-tbody {
+#table-submissions tbody {
 	display: block;
 	height: 400px;
 	overflow-y: auto; /* Trigger vertical scroll    */
@@ -126,11 +126,11 @@ tbody {
 	background-color: #d0d0d0;
 }
 
-tr {
+#table-submissions tr {
 	background-color: #e0e0e0;
 }
 
-table td {
+#table-submissions td {
 	/*padding-right:5px;*/
 	white-space: nowrap; 
 	word-wrap: break-word;
@@ -138,7 +138,7 @@ table td {
 	text-align: left;
 }
 
-table th {
+#table-submissions th {
 	/*padding-right:5px;*/
 	white-space: nowrap; 
 	word-wrap: break-word;
@@ -146,13 +146,37 @@ table th {
 	text-align: left;
 }
 
-.search_box{
+.search-box{
 	margin-right:-2px; /* Note the minus number */
 }
 
 /*tr:nth-child(even) {
     background-color:#e0e0e0;
 }*/
+
+.table-forms{
+	margin: auto;
+	background-color: #d0d0d0;
+	margin-top:5px;
+	margin-bottom: 20px;
+	table-layout:fixed;
+}
+
+.table-forms td {
+	/*padding-right:5px;*/
+	white-space: nowrap; 
+	word-wrap: break-word;
+	overflow: hidden;
+	text-align: left;
+}
+
+.table-forms th {
+	/*padding-right:5px;*/
+	white-space: nowrap; 
+	word-wrap: break-word;
+	overflow: hidden;
+	text-align: right;
+}
 
 /* All the button css */
 /*.btn-primary {*/

@@ -1,19 +1,31 @@
 {% extends 'base.html' %} 
+{% block title %}Submissions{% endblock %}
 {% block content %}
 
-<h1 style='text-align: center;'>Index for Submissions</h1>
+<h1 style='text-align: center;'>Submissions</h1>
 
-<form action='/submissions/search/' method='post' style='margin: 0 auto;width:1000px'>
+<form action='/submissions/router/' method='post' style='margin: 0 auto;width:1000px'>
 	{% csrf_token %}
+	<input id='hidden-data' name='hidden-data' type='text' style='display:none;'>
 	<div style='display:inline;'>
-		<input name='search_id' class='search_box' type='text' style='width:{{w.id_width}};' disabled> 
-		<input name='search_story' class='search_box' type='text' style='width:{{w.story_width}};'>
-		<input name='search_words' class='search_box' type='text' style='width:{{w.words_width}};'>
-		<input name='search_file' class='search_box' type='text' style='width:{{w.file_width}};'>
-		<input name='search_publisher' class='search_box' type='text' style='width:{{w.publisher_width}};'>
-		<input name='search_date_submitted' type='text' style='width:{{w.date_submitted_width}};'>
-		<input name='disposition' class='search_box' type='text' style='width:{{w.disposition_width}};'>
-		<input name='search_disposition_date' class='search_box' type='text' style='width:{{w.disposition_date_width}};'>
+		<input id='search-id' name='id' class='search-box' type='text' style='width:{{w.id_width}};' disabled> 
+		<input id='search-story' name='story' class='search-box' type='text' style='width:{{w.story_width}};'>
+		<input id='search-words' name='word_count' class='search-box' type='text' style='width:{{w.words_width}};'>
+		<input id='search-file' name='file' class='search-box' type='text' style='width:{{w.file_width}};'>
+ 		<select id='search-publisher' name='publisher_id' class='search-box' type='text' style='width:{{w.publisher_width}};'>
+ 			<option value='0' > </option>
+			{% for p in publishers %}
+				<option value='{{ p.id }}'>{{p.publisher}}</option>
+			{% endfor %}
+		</select> 
+		<input id='search-date-submitted' name='date_submitted' type='text' style='width:{{w.date_submitted_width}};'>
+		<select id='search-disposition' name='disposition_id' class='search-box' type='text' style='width:{{w.disposition_width}};'>
+		 	<option value='0' > </option>
+			{% for d in dispositions %}
+				<option value='{{ d.id }}'>{{d.disposition}}</option>
+			{% endfor %}
+		</select>
+		<input id='search-disposition-date' name='disposition_date' class='search-box' type='text' style='width:{{w.disposition_date_width}};'>
 	</div>
 	<table id='table-submissions' >
 		<thead>
@@ -46,12 +58,12 @@
 		</tbody>
 	</table>
 	<div style='text-align: center;'>
-		<button name='btn_search' type='submit'>Search</button>
-		<button name='btn_clear' type='submit'>Clear</button>
-		<button name='btn_add' onclick=testButton()>Add</button>
-		<button name='btn_edit' type='submit'>Edit</button>
-		<button name='btn_delete' type='submit'>Delete</button>
-		<button name='btn_other_pubs' type='submit'>Other Pubs</button>
+		<button id='btn-search' name='btn-search' type='submit' value='search'>Search</button>
+		<button id='btn-clear' type='submit' value='clear'>Clear</button>
+		<button id='btn-add' name='btn-add' type='submit' value='add'>Add</button>
+		<button id='btn-edit' name='btn-edit' type='submit' value='edit'>Edit</button>
+		<button id='btn-delete' type='submit' value='delete'>Delete</button>
+		<button id='btn-other-pubs' type='submit' value='other-pubs'>Other Pubs</button>
 	</div>
 </form>
 {% endblock %}
