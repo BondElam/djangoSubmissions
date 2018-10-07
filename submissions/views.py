@@ -21,15 +21,14 @@ width_dict = {"id_width": '40px',
 def new_submission(request):
   
     if request.method == "POST":
+        
         form = NewSubmissionForm(request.POST)
         print(request.POST)
         if form.is_valid():
-            submission = form.save(commit=False)
+            submission = form.save(commit=False)            
             submission.user = request.user
             submission.save()   
             return display_submissions({}, request) 
-        else:
-            print("error.....................................................")
 
     else:
         form = NewSubmissionForm()
