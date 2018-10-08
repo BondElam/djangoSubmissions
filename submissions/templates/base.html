@@ -12,12 +12,22 @@
 		<title>{% block title %}Django Auth Tutorial{% endblock %}</title>
 	</head>
 	<body>
-	<select>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
+		<div class='div-heading'>
+ 			<div class="navbar">
+			  <a href="#home">Home</a>
+			  <div class="dropdown">
+			    <button class="dropbtn">Maintenance</i></button>
+			    <div class="dropdown-content">
+			      <a href="#">Publishers</a>
+			      <a href="#">Dispositions</a>
+			    </div>
+			  </div> 
+			  <a href="#news">Users</a>
+			  <a href="#news">Login</a>
+			  <a href="#news">Help</a>
+			</div> 
+		</div>
+
   
 	  	<main >
 			{% block content %}

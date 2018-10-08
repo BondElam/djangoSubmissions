@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from .models import Disposition, Publisher, Submission
 from django.http import HttpResponse
 import ast
-from .forms import NewSubmissionForm
+from .forms import NewSubmissionForm, NewPublisherForm
 from django.shortcuts import redirect
 from django import forms
 
@@ -34,6 +34,23 @@ def new_submission(request):
         form = NewSubmissionForm()
         
     return render(request,'new_submission.html', {'form':form})
+
+def new_publisher(request):
+  
+    if request.method == "POST":        
+        form = NewPublisherForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            publisher = form.save(commit=False)            
+            publisher.user = request.user
+            publisher.save()   
+            return display_submissions({}, request) 
+
+    else:
+        form = NewPublisherForm()
+        
+    return render(request,'new_publisher.html', {'form':form})
+
 
 def dispositions(request):
     current_user = request.user
@@ -78,7 +95,7 @@ def router(request):
     if dict['action'] == 'search':
         return search_submissions(request)
     elif dict['action'] == 'add':
-        return add_submission()
+        return redirect('new_submission')
     elif dict['action'] == 'edit':
         print(dict['id'])
     return HttpResponse('too bad')
