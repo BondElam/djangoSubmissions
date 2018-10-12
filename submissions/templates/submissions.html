@@ -58,12 +58,13 @@
 		</tbody>
 	</table>
 	<div style='text-align: center;'>
-		<button id='btn-search' name='btn-search' type='submit' value='search'>Search</button>
-		<button id='btn-clear' type='submit' value='clear'>Clear</button>
-		<button id='btn-add' name='btn-add' type='submit' value='add'>Add</button>
-		<button id='btn-edit' name='btn-edit' type='submit' value='edit'>Edit</button>
-		<button id='btn-delete' type='submit' value='delete'>Delete</button>
-		<button id='btn-other-pubs' type='submit' value='other-pubs'>Other Pubs</button>
+		<button id='btn-search' name='btn-search' class='button' type='submit' value='search'>Search</button>
+		<button id='btn-clear' type='submit' class='button' value='clear'>Clear</button>
+	<!-- 	<button id='btn-add' name='btn-add' class='button' type='submit' value='add'>Add</button> -->
+		<a href='/submissions/add' class='button'>Add</a>
+		<button id='btn-edit' name='btn-edit' class='button' type='submit' value='edit'>Edit</button>
+		<button id='btn-delete' type='submit' class='button' value='delete'>Delete</button>
+		<button id='btn-other-pubs' type='submit' class='button' value='other-pubs'>Other Pubs</button>
 	</div>
 </form>
 {% endblock %}

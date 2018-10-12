@@ -62,9 +62,24 @@ $(document).ready(function(){
 	});
 
 	$("#btn-edit").click(function() {		
-		$("#hidden-data").val("{'action':'edit', 'id':'201'}");
+		if(tbl.rowIndex < 0){
+			Alert("You must select a row to edit.");
+			return;
+		}
+		$("#table-submissions tr").each(function(){
+			if($(this).index() === tbl.rowIndex){	
+				var id = $(':nth-child(1)', this).text();		
+				$("#hidden-data").val("{'action':'edit', 'id':'" + id + "'}");
+			}
+		})
 	});
-//		return;
+	
+	
+	
+//		$("#hidden-data").val("{'action':'edit', 'id':'201'}");
+		
+
+//		return
 //
 //		var buttonId = $(this).attr('id');
 //		if(tbl.rowIndex < 0 && buttonId === 'btn-edit'){

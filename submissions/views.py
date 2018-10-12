@@ -21,38 +21,38 @@ width_dict = {"id_width": '40px',
     "scrollbar_width": '15px',
 }
 
-def new_submission(request):
-  
-    if request.method == "POST":
-        
-        form = NewSubmissionForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
-            submission = form.save(commit=False)            
-            submission.user = request.user
-            submission.save()   
-            return display_submissions({}, request) 
+# def add_submission(request):
+#   
+#     if request.method == "POST":
+#         
+#         form = NewSubmissionForm(request.POST)
+#         print(request.POST)
+#         if form.is_valid():
+#             submission = form.save(commit=False)            
+#             submission.user = request.user
+#             submission.save()   
+#             return display_submissions({}, request) 
+# 
+#     else:
+#         form = NewSubmissionForm()
+#         
+#     return render(request,'new_submission.html', {'form':form})
 
-    else:
-        form = NewSubmissionForm()
-        
-    return render(request,'new_submission.html', {'form':form})
-
-def new_publisher(request):
-  
-    if request.method == "POST":        
-        form = NewPublisherForm(request.POST)
-        print(request.POST)
-        if form.is_valid():
-            publisher = form.save(commit=False)            
-            publisher.user = request.user
-            publisher.save()   
-            return display_submissions({}, request) 
-
-    else:
-        form = NewPublisherForm()
-        
-    return render(request,'new_publisher.html', {'form':form})
+# def new_publisher(request):
+#   
+#     if request.method == "POST":        
+#         form = NewPublisherForm(request.POST)
+#         print(request.POST)
+#         if form.is_valid():
+#             publisher = form.save(commit=False)            
+#             publisher.user = request.user
+#             publisher.save()   
+#             return display_submissions({}, request) 
+# 
+#     else:
+#         form = NewPublisherForm()
+#         
+#     return render(request,'new_publisher.html', {'form':form})
 
 def dispositions(request):
     current_user = request.user
@@ -96,14 +96,16 @@ def router(request):
     dict = ast.literal_eval(request.POST['hidden-data'])
     if dict['action'] == 'search':
         return search_submissions(request)
-    elif dict['action'] == 'add':
-        return redirect('new_submission')
+#     elif dict['action'] == 'add':
+#         return redirect('submission/add')
     elif dict['action'] == 'edit':
         print(dict['id'])
+        return redirect('/submissions/update/' + dict['id'])
+        
     return HttpResponse('too bad')
 
-def add_submission():
-    pass
+# def add_submission():
+#     pass
 
 def search_submissions(request):
     sql_dict = {}
@@ -147,10 +149,48 @@ def display_submissions(sql_dict, request):
                }
     return render(request, 'submissions.html', context)
 
+
+class SubmissionCreate(CreateView):
+    model = Submission
+    fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
+    template_name = 'detail_view.html'
+    success_url = '/submissions/'
+#     initial = {'bond': 'my_button'}
+    
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(SubmissionCreate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Add New submission'
+        instructions = "Enter the required information and press the 'Add' button to add this submission. Press 'Cancel' to exit with out changes. "
+        instructions += 'You may also use the menu at the top of the page.'
+        context['instructions'] = instructions
+        context['buttonlabel'] = 'Add'
+        context['cancelpath'] = '/submissions/'
+        return context
+    
+class SubmissionUpdate(UpdateView):
+    model = Submission
+    fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
+    template_name = 'detail_view.html'
+    success_url = '/submissions/'
+    
+    def get_context_data(self, **kwargs):
+        context = super(SubmissionUpdate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Update submission'
+        instructions = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
+        instructions += 'You may also use the menu at the top of the page.'
+        context['instructions'] = instructions
+        context['buttonlabel'] = 'Update'
+        context['cancelpath'] = '/submissions/'
+        return context
+
 class PublisherListView(ListView):
     model = Publisher
 #     paginate_by = 5
-    template_name = 'publisher_list.html'
+    template_name = 'publishers.html'
 
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
@@ -159,9 +199,9 @@ class PublisherListView(ListView):
 class PublisherCreate(CreateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
-    template_name = 'new_submission.html'
+    template_name = 'detail_view.html'
     success_url = '/submissions/publishers/'
-    initial = {'bond': 'my_button'}
+#     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -170,13 +210,29 @@ class PublisherCreate(CreateView):
     def get_context_data(self, **kwargs):
         context = super(PublisherCreate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Add New Publisher'
+        instructions = "Enter the required information and and press the 'Add' button. Press 'Cancel' to exit with out changes. "
+        instructions += 'You may also use the menu at the top of the page.'
+        context['instructions'] = instructions
+        context['buttonlabel'] = 'Add'
+        context['cancelpath'] = '/submissions/publishers'
         return context
 
 class PublisherUpdate(UpdateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
-    template_name = 'new_submission.html'
+    template_name = 'detail_view.html'
     success_url = '/submissions/publishers/'
+    
+    def get_context_data(self, **kwargs):
+        context = super(PublisherUpdate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Update Publisher Information'
+        instructions = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
+        instructions += 'You may also use the menu at the top of the page.'
+        context['instructions'] = instructions
+        context['buttonlabel'] = 'Update'
+        context['cancelpath'] = '/submissions/publishers'
+        return context
+
     
 class PublisherDelete(DeleteView):
     model = Publisher
