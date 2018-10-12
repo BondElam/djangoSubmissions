@@ -2,9 +2,12 @@ from django.shortcuts import render, render_to_response
 from .models import Disposition, Publisher, Submission
 from django.http import HttpResponse
 import ast
-from .forms import NewSubmissionForm, NewPublisherForm
+from .forms import NewSubmissionForm, NewPublisherForm, ListPublishersForm
 from django.shortcuts import redirect
 from django import forms
+from django.views.generic.list import ListView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 # This should be the only place you need to make changes.
 width_dict = {"id_width": '40px',
@@ -50,7 +53,6 @@ def new_publisher(request):
         form = NewPublisherForm()
         
     return render(request,'new_publisher.html', {'form':form})
-
 
 def dispositions(request):
     current_user = request.user
@@ -144,4 +146,43 @@ def display_submissions(sql_dict, request):
                'publishers': publishers_dict,
                }
     return render(request, 'submissions.html', context)
+
+class PublisherListView(ListView):
+    model = Publisher
+#     paginate_by = 5
+    template_name = 'publisher_list.html'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         return context
+
+class PublisherCreate(CreateView):
+    model = Publisher
+    fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
+    template_name = 'new_submission.html'
+    success_url = '/submissions/publishers/'
+    initial = {'bond': 'my_button'}
+    
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(PublisherCreate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Add New Publisher'
+        return context
+
+class PublisherUpdate(UpdateView):
+    model = Publisher
+    fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
+    template_name = 'new_submission.html'
+    success_url = '/submissions/publishers/'
+    
+class PublisherDelete(DeleteView):
+    model = Publisher
+    fields = ['publisher']
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('publisher-list')
+
+    
 

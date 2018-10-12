@@ -24,3 +24,10 @@ class NewPublisherForm(forms.ModelForm):
         fields = ('publisher', 'web_address','min_words', 'max_words',
                   'remarks',)
         
+class ListPublishersForm(forms.ModelForm):
+
+    class Meta:
+        model = Publisher
+        fields = ('publisher', 'web_address',)
+        
+        
