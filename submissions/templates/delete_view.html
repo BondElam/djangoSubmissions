@@ -1,14 +1,18 @@
-
 {% extends 'base.html' %}
 {% block title %}{{ pagetitle }}{% endblock %}
 {% block content %}
 <div style='text-align:center'>
 	<h2>{{ pagetitle }}</h2>
 	<p class='{{instruction_class}}'>{{instruction}}</p>
-	<form method="post">
+	<form method="post" >
 	  {% csrf_token %}
 	  <table class='table-forms' >
-	  {{ form.as_table }}
+	  	{% for k, v in data.items %}
+	  		<tr>
+	  			<th><label>{{k}}</label></th>
+	  			<td><input value='{{v}}' disabled></td>
+	  		</tr>
+	  	{% endfor %}	  	
 	  </table>
 	  <button type="submit" class='button'>{{ buttonlabel }}</button>
 	  <a href='{{ cancelpath }}' class='button'>Cancel</a>

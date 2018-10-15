@@ -9,20 +9,20 @@
 		<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 		<link href="{% static 'css/custom.css' %}" rel="stylesheet">  
 		<!-- end of my stuff -->
-		<title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+		<title>{% block title %}Submissions Management{% endblock %}</title>
 	</head>
 	<body>
 		<div class='div-heading'>
  			<div class="navbar">
-			  <a href="#home">Home</a>
+			  <a href="/submissions/">Home</a>
 			  <div class="dropdown">
 			    <button class="dropbtn button">Maintenance</i></button>
 			    <div class="dropdown-content">
-			      <a href="#">Publishers</a>
-			      <a href="#">Dispositions</a>
+			      <a href="/submissions/publishers/">Publishers</a>
+			      <a href="/submissions/dispositions">Dispositions</a>
 			    </div>
 			  </div> 
-			  <a href="#news">Users</a>
+			  <a href="/admin/">Users</a>
 			  <a href="#news">Login</a>
 			  <a href="#news">Help</a>
 			</div> 

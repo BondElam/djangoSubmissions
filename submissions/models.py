@@ -22,6 +22,9 @@ class Publisher(models.Model):
     def get_absolute_url(self):
         return reverse('publisher-update', kwargs={'pk': self.pk})
     
+    class Meta:
+        ordering = ['publisher']
+    
 class Submission(models.Model):
     story = models.CharField(max_length=50)  
     word_count = models.IntegerField(null=True)  
@@ -31,4 +34,7 @@ class Submission(models.Model):
     publisher = models.ForeignKey('Publisher', on_delete=models.PROTECT) 
     disposition = models.ForeignKey('Disposition', on_delete=models.PROTECT) 
     user = models.ForeignKey(User, on_delete=models.PROTECT)
+    
+#     def __str__(self):
+#         return self.story
 

@@ -63,8 +63,8 @@ $(document).ready(function(){
 
 	$("#btn-edit").click(function() {		
 		if(tbl.rowIndex < 0){
-			Alert("You must select a row to edit.");
-			return;
+			alert("You must select a row to edit.");
+			return false;
 		}
 		$("#table-submissions tr").each(function(){
 			if($(this).index() === tbl.rowIndex){	
@@ -74,6 +74,24 @@ $(document).ready(function(){
 		})
 	});
 	
+	$("#btn-delete").click(function(){		
+		if(tbl.rowIndex < 0 ){
+			alert("You must select a row to delete.");
+			return false;
+		}
+		var sub = '';
+		$("#table-submissions tr").each(function(){
+			if($(this).index() === tbl.rowIndex){	
+				sub = $(':nth-child(1)', this).text();	
+//				alert(sub);
+			}
+		});
+//		alert($(location).attr('href') )
+		var addr = $(location).attr('href') + "delete/" + sub;
+//		alert(addr);		
+		$('#btn-delete').attr('href',addr);		
+		return;
+	});
 	
 	
 //		$("#hidden-data").val("{'action':'edit', 'id':'201'}");

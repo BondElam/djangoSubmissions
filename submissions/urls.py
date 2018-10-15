@@ -10,10 +10,12 @@ urlpatterns = [
     path('router/', views.router, name='router'),
     path('add', SubmissionCreate.as_view(), name='submission-add'),
     path('update/<int:pk>/', SubmissionUpdate.as_view(), name='submission-update'),
-#     path('new_publisher', views.add_publisher, name='new_publisher'),
+#     path('delete/<int:pk>/', SubmissionDelete.as_view(), name='submission-delete'),
+    path('delete/<int:pk>/', views.delete_submission, name='submission-delete'),
+    path('delete/', views.delete_submission, name = 'test-delete'),
     path('publishers/', PublisherListView.as_view(), name='publishers'),
     path('publisher/add/', PublisherCreate.as_view(), name='publisher-add'),
     path('publisher/<int:pk>/', PublisherUpdate.as_view(), name='publisher-update'),
-    path('publisher/<int:pk>/delete/', PublisherDelete.as_view(), name='publisher-delete'),
+    path('publisher/delete/<int:pk>/', views.delete_publisher, name='publisher-delete'),
     
 ]

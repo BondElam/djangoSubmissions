@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django import forms
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView, DeleteView
 
 # This should be the only place you need to make changes.
 width_dict = {"id_width": '40px',
@@ -54,28 +54,72 @@ width_dict = {"id_width": '40px',
 #         
 #     return render(request,'new_publisher.html', {'form':form})
 
-def dispositions(request):
-    current_user = request.user
-    print("current user: " + str(current_user))
-    
-    for d in Disposition.objects.all():
-        print (str(d.id) + ' ' + d.disposition)    
-        
-    for d in Disposition.objects.all():
-        print (d)
-        
-    dispositions_dict = Disposition.objects.all()
-    context = {'dispositions': dispositions_dict.values()}
-    return render(request, 'dispositions.html', context)
-    
-def publishers(request):
+# def dispositions(request):
+#     current_user = request.user
+#     print("current user: " + str(current_user))
+#     
+#     for d in Disposition.objects.all():
+#         print (str(d.id) + ' ' + d.disposition)    
+#         
+#     for d in Disposition.objects.all():
+#         print (d)
+#         
+#     dispositions_dict = Disposition.objects.all()
+#     context = {'dispositions': dispositions_dict.values()}
+#     return render(request, 'dispositions.html', context)
+#     
+# def publishers(request):
+# 
+#     for p in Publisher.objects.all():
+#         print (str(p.id) + ' ' + p.publisher)    
+# 
+#     publishers_dict = Publisher.objects.all()
+#     context = {'publishers': publishers_dict.values()}
+#     return render(request, 'publishers.html', context)
 
-    for p in Publisher.objects.all():
-        print (str(p.id) + ' ' + p.publisher)    
+def delete_submission(request, pk):    
+    # form without action value will bounce back to self, in this case as POST    
+    if request.method == "POST":  
+        Submission.objects.filter(pk=pk).delete()
+        return redirect('/submissions')
 
-    publishers_dict = Publisher.objects.all()
-    context = {'publishers': publishers_dict.values()}
-    return render(request, 'publishers.html', context)
+    sub = Submission.objects.filter(pk=pk).values()[0]
+    data = {}
+    for k, v in sub.items():
+        kk = k.replace('_', ' ')
+        kk = kk.title()
+        data[kk] = v
+    context = {}     
+    context['data'] = data 
+    context['pagetitle'] = 'Delete Submission'
+    context['instruction'] = instruction_text('delete')
+    context['buttonlabel'] = 'Delete'
+    context['instruction_class'] = 'warning'
+    context['cancelpath'] = '/submissions'
+     
+    return render(request, 'delete_view.html', context)
+
+def delete_publisher(request, pk):    
+    # form without action value will bounce back to self, in this case as POST    
+    if request.method == "POST":  
+        Publisher.objects.filter(pk=pk).delete()
+        return redirect('/submissions/publishers')
+
+    pub = Publisher.objects.filter(pk=pk).values()[0]
+    data = {}
+    for k, v in pub.items():
+        kk = k.replace('_', ' ')
+        kk = kk.title()
+        data[kk] = v
+    context = {}     
+    context['data'] = data 
+    context['pagetitle'] = 'Delete Publisher'
+    context['instruction'] = instruction_text('delete')
+    context['buttonlabel'] = 'Delete'
+    context['instruction_class'] = 'warning'
+    context['cancelpath'] = '/submissions'
+     
+    return render(request, 'delete_view.html', context)
 
 def submissions(request):
 
@@ -91,21 +135,17 @@ def submissions(request):
     return render(request, 'submissions.html', context)
 
 def router(request):
-    
-    print(request.POST) #request.POSt is a list of strings, so need to convert my stuff to real dictionaries
-    dict = ast.literal_eval(request.POST['hidden-data'])
+#   print(request.POST) #request.POSt is a list of strings, so need to convert my stuff to real dictionaries
+    post_dict = ast.literal_eval(request.POST['hidden-data'])
     if dict['action'] == 'search':
         return search_submissions(request)
-#     elif dict['action'] == 'add':
-#         return redirect('submission/add')
     elif dict['action'] == 'edit':
         print(dict['id'])
-        return redirect('/submissions/update/' + dict['id'])
+        return redirect('/submissions/update/' + post_dict['id'])
+    elif dict['action'] == 'delete':
+        delete_submission(dict['id'])
         
     return HttpResponse('too bad')
-
-# def add_submission():
-#     pass
 
 def search_submissions(request):
     sql_dict = {}
@@ -149,6 +189,22 @@ def display_submissions(sql_dict, request):
                }
     return render(request, 'submissions.html', context)
 
+def instruction_text(instruction_type = 'create'):
+    
+    if instruction_type == 'create':
+        instruction = "Enter the required information and press the 'Add' button to add this submission. Press 'Cancel' to exit with out changes. "
+        instruction += 'You may also use the menu at the top of the page.'
+    elif instruction_type == 'update':
+        instruction = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
+        instruction += 'You may also use the menu at the top of the page.'
+    elif instruction_type == 'delete':
+        instruction = "If you are sure you want to delete this record, press the 'Delete' button. Otherwise, "
+        instruction += "press 'Cancel.' You also may use the menu at the top of the page."
+    else:
+        instruction = 'There is an error in your instruction selection.'
+        
+    return instruction
+        
 
 class SubmissionCreate(CreateView):
     model = Submission
@@ -163,11 +219,13 @@ class SubmissionCreate(CreateView):
     
     def get_context_data(self, **kwargs):
         context = super(SubmissionCreate, self).get_context_data(**kwargs)
+        
         context['pagetitle'] = 'Add New submission'
         instructions = "Enter the required information and press the 'Add' button to add this submission. Press 'Cancel' to exit with out changes. "
         instructions += 'You may also use the menu at the top of the page.'
-        context['instructions'] = instructions
+        context['instruction'] = instruction_text('create')
         context['buttonlabel'] = 'Add'
+        context['instruction_class'] = 'instruction'
         context['cancelpath'] = '/submissions/'
         return context
     
@@ -179,13 +237,29 @@ class SubmissionUpdate(UpdateView):
     
     def get_context_data(self, **kwargs):
         context = super(SubmissionUpdate, self).get_context_data(**kwargs)
+        print(context)
         context['pagetitle'] = 'Update submission'
-        instructions = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
-        instructions += 'You may also use the menu at the top of the page.'
-        context['instructions'] = instructions
+        context['instruction'] = instruction_text('update')
         context['buttonlabel'] = 'Update'
+        context['instruction_class'] = 'instruction'
         context['cancelpath'] = '/submissions/'
         return context
+
+# class SubmissionDelete(DeleteView):
+#     model = Submission
+#     fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
+#     template_name = 'detail_view.html'
+#     success_url = reverse_lazy('/submissions/')
+#     
+#     def get_context_data(self, **kwargs):
+#         context = super(SubmissionDelete, self).get_context_data(**kwargs)
+#         print(context)
+#         context['pagetitle'] = 'Delete submission'
+#         context['instruction'] = instruction_text('delete')
+#         context['buttonlabel'] = 'Delete'
+#         context['instruction_class'] = 'warning'
+#         context['cancelpath'] = '/submissions/'
+#         return context
 
 class PublisherListView(ListView):
     model = Publisher
@@ -237,8 +311,17 @@ class PublisherUpdate(UpdateView):
 class PublisherDelete(DeleteView):
     model = Publisher
     fields = ['publisher']
-    template_name = 'confirm_delete.html'
+#     template_name = 'detail_view.html'
+    template_name = 'message.html'
     success_url = reverse_lazy('publisher-list')
-
-    
+#     
+#     def get_context_data(self, **kwargs):
+#         context = super(PublisherDelete, self).get_context_data(**kwargs)
+#         print( context)
+#         return context
+# 
+#     def get_queryset(self):
+#         qs = super(PublisherDelete, self).get_queryset()
+#         print(qs)        
+#         return qs
 

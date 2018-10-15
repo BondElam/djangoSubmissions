@@ -86,7 +86,7 @@ body {
 
 .table-forms{
 	margin: auto;
-/* 	background-color: #d0d0d0; */
+   	/* background-color: #d0d0d0; */
 	margin-top:5px;
 	margin-bottom: 20px;
 	table-layout:fixed;
@@ -139,8 +139,8 @@ body {
 	text-decoration:none;
 }
 
-.instructions{
-	color: #337ab7;
+.instruction{
+	color: #337ab7; 
 	font-size: 16px;
 	margin: 0 auto;
 	width:500px;
@@ -148,6 +148,16 @@ body {
 	padding-bottom:20px;
 }
 
+.warning{
+	/* color: #b77a33; */
+	color: rgb(220, 53, 69);
+	font-size: 16px;
+	margin: 0 auto;
+	width:500px;
+	text-align:left;
+	padding-bottom:20px;
+	
+}
 .popup {
 	/*display: none; */
 	/*border: 1px solid black;*/
@@ -206,17 +216,18 @@ body {
 }
 
 .navbar {
+	float: right;
     overflow: hidden;
     background-color: #777;
 /*     font-family: Arial, Helvetica, sans-serif; */
     float:right;
-    width:100%;
+   /*  width:100%; */
     padding:0px 60px;
     margin:0px;
 }
 
 .navbar a {
-    float: right;
+    float: left; 
     font-size: 14px;
     color: white;
     text-align: center;
@@ -225,7 +236,7 @@ body {
 }
 
 .dropdown {
-    float: right;
+    float: left;
     overflow: hidden;
 }
 
