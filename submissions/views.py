@@ -121,6 +121,29 @@ def delete_publisher(request, pk):
      
     return render(request, 'delete_view.html', context)
 
+def delete_disposition(request, pk):    
+    # form without action value will bounce back to self, in this case as POST    
+    if request.method == "POST":  
+        Disposition.objects.filter(pk=pk).delete()
+        return redirect('/submissions/dispositions')
+
+    disp = Disposition.objects.filter(pk=pk).values()[0]
+    data = {}
+    for k, v in disp.items():
+        kk = k.replace('_', ' ')
+        kk = kk.title()
+        data[kk] = v
+    context = {}     
+    context['data'] = data 
+    context['pagetitle'] = 'Delete Disposition'
+    context['instruction'] = instruction_text('delete')
+    context['buttonlabel'] = 'Delete'
+    context['instruction_class'] = 'warning'
+    context['cancelpath'] = '/submissions'
+     
+    return render(request, 'delete_view.html', context)
+
+
 def submissions(request):
 
     print(request)
@@ -325,3 +348,64 @@ class PublisherDelete(DeleteView):
 #         print(qs)        
 #         return qs
 
+class DispositionListView(ListView):
+    model = Disposition
+#     paginate_by = 5
+    template_name = 'dispositions.html'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         return context
+
+class DispositionCreate(CreateView):
+    model = Disposition
+    fields = ['disposition']
+    template_name = 'detail_view.html'
+    success_url = '/submissions/dispositions/'
+#     initial = {'bond': 'my_button'}
+    
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(DispositionCreate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Add New Disposition'
+        instructions = "Enter the required information and and press the 'Add' button. Press 'Cancel' to exit with out changes. "
+        instructions += 'You may also use the menu at the top of the page.'
+        context['instructions'] = instruction_text('create')
+        context['buttonlabel'] = 'Add'
+        context['cancelpath'] = '/submissions/dispositions/'
+        return context
+
+class DispositionUpdate(UpdateView):
+    model = Disposition
+    fields = ['disposition']
+    template_name = 'detail_view.html'
+    success_url = '/submissions/dispositions/'
+    
+    def get_context_data(self, **kwargs):
+        context = super(DispositionUpdate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Update Disposition Information'
+        context['instructions'] = instruction_text('update')
+        context['buttonlabel'] = 'Update'
+        context['cancelpath'] = '/submissions/dispositions'
+        return context
+
+    
+class DispositionDelete(DeleteView):
+    model = Publisher
+    fields = ['disposition']
+#     template_name = 'detail_view.html'
+    template_name = 'message.html'
+    success_url = reverse_lazy('disposition-list')
+#     
+#     def get_context_data(self, **kwargs):
+#         context = super(PublisherDelete, self).get_context_data(**kwargs)
+#         print( context)
+#         return context
+# 
+#     def get_queryset(self):
+#         qs = super(PublisherDelete, self).get_queryset()
+#         print(qs)        
+#         return qs

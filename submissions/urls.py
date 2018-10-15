@@ -1,6 +1,7 @@
 from django.urls import path
 from submissions.views import PublisherListView, PublisherCreate, PublisherUpdate, PublisherDelete
 from submissions.views import SubmissionCreate, SubmissionUpdate
+from submissions.views import DispositionListView, DispositionCreate, DispositionUpdate
 from . import views
 
 urlpatterns = [
@@ -17,5 +18,9 @@ urlpatterns = [
     path('publisher/add/', PublisherCreate.as_view(), name='publisher-add'),
     path('publisher/<int:pk>/', PublisherUpdate.as_view(), name='publisher-update'),
     path('publisher/delete/<int:pk>/', views.delete_publisher, name='publisher-delete'),
+    path('dispositions/', DispositionListView.as_view(), name='dispositions'),
+    path('disposition/add/', DispositionCreate.as_view(), name='disposition-add'),
+    path('disposition/<int:pk>/', DispositionUpdate.as_view(), name='dispositionr-update'),
+    path('disposition/delete/<int:pk>/', views.delete_disposition, name='dispositionr-delete'),
     
 ]

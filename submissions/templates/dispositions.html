@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Dispositions{% endblock %}
+{% block content %}
+<div style='text-align:center;margin: 0 auto; width:600px;'>
+	<h2>Dispositions</h2>
+	<form method="post">
+	  {% csrf_token %}
+	  <table class='table-forms' >
+	  	{% for disposition in object_list %}
+	  		<tr>
+	  			<td style='text-align:left;'>{{disposition.disposition}}</td>
+	  			<td>
+	  				<a href='/submissions/disposition/{{disposition.id}}'>Edit</a>   
+	  				<a href= '/submissions/disposition/delete/{{disposition.id}}#'>Delete</a>
+	  			</td>	  		
+	  		</tr>
+	  	{% endfor %}
+	  </table>	  
+	  <a href='/submissions/disposition/add' class='button'>Add New</a>
+	  <a href='/submissions/' class='button'>Cancel</a>
+	</form> 
+</div>
+{% endblock %}

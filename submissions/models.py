@@ -8,6 +8,8 @@ class Disposition(models.Model):
     
     def __str__(self):
         return self.disposition
+    class Meta:
+        ordering =['disposition']
     
 class Publisher(models.Model):
     publisher = models.CharField(max_length=50, unique=True)
