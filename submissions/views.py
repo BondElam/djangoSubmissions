@@ -8,6 +8,10 @@ from django import forms
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView, DeleteView
+from django.contrib.auth.models import User
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # This should be the only place you need to make changes.
 width_dict = {"id_width": '40px',
@@ -20,6 +24,12 @@ width_dict = {"id_width": '40px',
     "disposition_date_width": '95px',
     "scrollbar_width": '15px',
 }
+
+def user_logout(request):
+    print('in logout ................................................')
+    logout(request)
+    return redirect('/accounts/login')
+    
 
 # def add_submission(request):
 #   
@@ -77,19 +87,34 @@ width_dict = {"id_width": '40px',
 #     context = {'publishers': publishers_dict.values()}
 #     return render(request, 'publishers.html', context)
 
+@login_required
 def delete_submission(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
     if request.method == "POST":  
         Submission.objects.filter(pk=pk).delete()
-        return redirect('/submissions')
+        return redirect('/submissions/')
 
-    sub = Submission.objects.filter(pk=pk).values()[0]
+    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(pk=pk).values()[0]
+
     data = {}
-    for k, v in sub.items():
+    for k, v in submissions_dict.items():
         kk = k.replace('_', ' ')
         kk = kk.title()
         data[kk] = v
-    context = {}     
+        
+    publishers_dict = Publisher.objects.filter(pk=data['Publisher Id'])
+    data['Publihser']=publishers_dict.values()[0]['publisher']
+    
+    dispositions_dict = Disposition.objects.filter(pk=data['Disposition Id'])
+    data['Disposition']=dispositions_dict.values()[0]['disposition']
+
+    data['User'] = User.objects.get(pk=data['User Id'])
+    
+#     del data['User Id']
+#     del data['Publisher Id']
+#     del data['Disposition Id']
+
+    context = {}    
     context['data'] = data 
     context['pagetitle'] = 'Delete Submission'
     context['instruction'] = instruction_text('delete')
@@ -99,6 +124,7 @@ def delete_submission(request, pk):
      
     return render(request, 'delete_view.html', context)
 
+@login_required
 def delete_publisher(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
     if request.method == "POST":  
@@ -117,10 +143,11 @@ def delete_publisher(request, pk):
     context['instruction'] = instruction_text('delete')
     context['buttonlabel'] = 'Delete'
     context['instruction_class'] = 'warning'
-    context['cancelpath'] = '/submissions'
+    context['cancelpath'] = '/submissions/publishers'
      
     return render(request, 'delete_view.html', context)
 
+@login_required
 def delete_disposition(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
     if request.method == "POST":  
@@ -139,17 +166,32 @@ def delete_disposition(request, pk):
     context['instruction'] = instruction_text('delete')
     context['buttonlabel'] = 'Delete'
     context['instruction_class'] = 'warning'
-    context['cancelpath'] = '/submissions'
+    context['cancelpath'] = '/submissions/dispositions'
      
     return render(request, 'delete_view.html', context)
 
 
-def submissions(request):
+# def submissions(request):
+# 
+# #     print(request)
+#     publishers_dict = Publisher.objects.all().order_by('publisher')
+#     dispositions_dict = Disposition.objects.all().order_by('disposition')
+#     submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').all().order_by('id')
+#     context = {'submissions': submissions_dict,
+#                'w': width_dict,
+#                 'dispositions': dispositions_dict,
+#                'publishers': publishers_dict,
+#                }
+#     return render(request, 'submissions.html', context)
 
-    print(request)
+@login_required
+def display_submissions(request, sql_dict={'id__gte':0}):
+
+    sql_dict['user_id__exact'] = request.user.id
+    print(sql_dict)
+    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(**sql_dict).order_by('id')
     publishers_dict = Publisher.objects.all().order_by('publisher')
     dispositions_dict = Disposition.objects.all().order_by('disposition')
-    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').all().order_by('id')
     context = {'submissions': submissions_dict,
                'w': width_dict,
                 'dispositions': dispositions_dict,
@@ -157,19 +199,21 @@ def submissions(request):
                }
     return render(request, 'submissions.html', context)
 
+@login_required
 def router(request):
 #   print(request.POST) #request.POSt is a list of strings, so need to convert my stuff to real dictionaries
     post_dict = ast.literal_eval(request.POST['hidden-data'])
-    if dict['action'] == 'search':
+    if post_dict['action'] == 'search':
         return search_submissions(request)
-    elif dict['action'] == 'edit':
+    elif post_dict['action'] == 'edit':
         print(dict['id'])
         return redirect('/submissions/update/' + post_dict['id'])
-    elif dict['action'] == 'delete':
+    elif post_dict['action'] == 'delete':
         delete_submission(dict['id'])
         
     return HttpResponse('too bad')
 
+@login_required
 def search_submissions(request):
     sql_dict = {}
     for k in request.POST.keys():
@@ -194,24 +238,13 @@ def search_submissions(request):
         elif k == 'disposition_date':
             sql_dict['disposition_date__gte'] = request.POST[k]
             
-        print('sql_dict...')
-        print(sql_dict)
+#         print('sql_dict...')
+#         print(sql_dict)
             
-    return display_submissions(sql_dict, request) 
-    
-def display_submissions(sql_dict, request):
+    return display_submissions(request, sql_dict) 
 
-    print(sql_dict)
-    submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(**sql_dict).order_by('id')
-    publishers_dict = Publisher.objects.all().order_by('publisher')
-    dispositions_dict = Disposition.objects.all().order_by('disposition')
-    context = {'submissions': submissions_dict,
-               'w': width_dict,
-                'dispositions': dispositions_dict,
-               'publishers': publishers_dict,
-               }
-    return render(request, 'submissions.html', context)
 
+# cannot use @login_required because no 'request' with user to check on
 def instruction_text(instruction_type = 'create'):
     
     if instruction_type == 'create':
@@ -221,7 +254,7 @@ def instruction_text(instruction_type = 'create'):
         instruction = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
         instruction += 'You may also use the menu at the top of the page.'
     elif instruction_type == 'delete':
-        instruction = "If you are sure you want to delete this record, press the 'Delete' button. Otherwise, "
+        instruction = "Are you sure you want to delete this record? If yes, press the 'Delete' button. Otherwise, "
         instruction += "press 'Cancel.' You also may use the menu at the top of the page."
     else:
         instruction = 'There is an error in your instruction selection.'
@@ -229,7 +262,7 @@ def instruction_text(instruction_type = 'create'):
     return instruction
         
 
-class SubmissionCreate(CreateView):
+class SubmissionCreate(LoginRequiredMixin, CreateView):
     model = Submission
     fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
     template_name = 'detail_view.html'
@@ -237,8 +270,8 @@ class SubmissionCreate(CreateView):
 #     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
+        form.instance.user_id = self.request.user.pk
+        return super(SubmissionCreate, self).form_valid(form)
     
     def get_context_data(self, **kwargs):
         context = super(SubmissionCreate, self).get_context_data(**kwargs)
@@ -252,7 +285,7 @@ class SubmissionCreate(CreateView):
         context['cancelpath'] = '/submissions/'
         return context
     
-class SubmissionUpdate(UpdateView):
+class SubmissionUpdate(LoginRequiredMixin, UpdateView):
     model = Submission
     fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
     template_name = 'detail_view.html'
@@ -284,7 +317,7 @@ class SubmissionUpdate(UpdateView):
 #         context['cancelpath'] = '/submissions/'
 #         return context
 
-class PublisherListView(ListView):
+class PublisherListView(LoginRequiredMixin, ListView):
     model = Publisher
 #     paginate_by = 5
     template_name = 'publishers.html'
@@ -293,7 +326,7 @@ class PublisherListView(ListView):
 #         context = super().get_context_data(**kwargs)
 #         return context
 
-class PublisherCreate(CreateView):
+class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
@@ -314,7 +347,7 @@ class PublisherCreate(CreateView):
         context['cancelpath'] = '/submissions/publishers'
         return context
 
-class PublisherUpdate(UpdateView):
+class PublisherUpdate(LoginRequiredMixin, UpdateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
@@ -331,12 +364,12 @@ class PublisherUpdate(UpdateView):
         return context
 
     
-class PublisherDelete(DeleteView):
-    model = Publisher
-    fields = ['publisher']
-#     template_name = 'detail_view.html'
-    template_name = 'message.html'
-    success_url = reverse_lazy('publisher-list')
+# class PublisherDelete(LoginRequiredMixin, DeleteView):
+#     model = Publisher
+#     fields = ['publisher']
+# #     template_name = 'detail_view.html'
+#     template_name = 'message.html'
+#     success_url = reverse_lazy('publisher-list')
 #     
 #     def get_context_data(self, **kwargs):
 #         context = super(PublisherDelete, self).get_context_data(**kwargs)
@@ -348,7 +381,7 @@ class PublisherDelete(DeleteView):
 #         print(qs)        
 #         return qs
 
-class DispositionListView(ListView):
+class DispositionListView(LoginRequiredMixin, ListView):
     model = Disposition
 #     paginate_by = 5
     template_name = 'dispositions.html'
@@ -357,7 +390,7 @@ class DispositionListView(ListView):
 #         context = super().get_context_data(**kwargs)
 #         return context
 
-class DispositionCreate(CreateView):
+class DispositionCreate(LoginRequiredMixin, CreateView):
     model = Disposition
     fields = ['disposition']
     template_name = 'detail_view.html'
@@ -378,7 +411,7 @@ class DispositionCreate(CreateView):
         context['cancelpath'] = '/submissions/dispositions/'
         return context
 
-class DispositionUpdate(UpdateView):
+class DispositionUpdate(LoginRequiredMixin, UpdateView):
     model = Disposition
     fields = ['disposition']
     template_name = 'detail_view.html'
@@ -393,12 +426,12 @@ class DispositionUpdate(UpdateView):
         return context
 
     
-class DispositionDelete(DeleteView):
-    model = Publisher
-    fields = ['disposition']
-#     template_name = 'detail_view.html'
-    template_name = 'message.html'
-    success_url = reverse_lazy('disposition-list')
+# class DispositionDelete(LoginRequiredMixin, DeleteView):
+#     model = Publisher
+#     fields = ['disposition']
+# #     template_name = 'detail_view.html'
+#     template_name = 'message.html'
+#     success_url = reverse_lazy('dispositions')
 #     
 #     def get_context_data(self, **kwargs):
 #         context = super(PublisherDelete, self).get_context_data(**kwargs)
