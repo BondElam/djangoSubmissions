@@ -188,7 +188,7 @@ def delete_disposition(request, pk):
 def display_submissions(request, sql_dict={'id__gte':0}):
 
     sql_dict['user_id__exact'] = request.user.id
-    print(sql_dict)
+#     print(sql_dict)
     submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').filter(**sql_dict).order_by('id')
     publishers_dict = Publisher.objects.all().order_by('publisher')
     dispositions_dict = Disposition.objects.all().order_by('disposition')
@@ -206,7 +206,7 @@ def router(request):
     if post_dict['action'] == 'search':
         return search_submissions(request)
     elif post_dict['action'] == 'edit':
-        print(dict['id'])
+        print(post_dict['id'])
         return redirect('/submissions/update/' + post_dict['id'])
     elif post_dict['action'] == 'delete':
         delete_submission(dict['id'])
@@ -248,7 +248,8 @@ def search_submissions(request):
 def instruction_text(instruction_type = 'create'):
     
     if instruction_type == 'create':
-        instruction = "Enter the required information and press the 'Add' button to add this submission. Press 'Cancel' to exit with out changes. "
+        instruction = "Enter the required information and press the 'Add' button to "
+        instruction += "add this record. Press 'Cancel' to exit with out changes. "
         instruction += 'You may also use the menu at the top of the page.'
     elif instruction_type == 'update':
         instruction = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
@@ -277,11 +278,9 @@ class SubmissionCreate(LoginRequiredMixin, CreateView):
         context = super(SubmissionCreate, self).get_context_data(**kwargs)
         
         context['pagetitle'] = 'Add New submission'
-        instructions = "Enter the required information and press the 'Add' button to add this submission. Press 'Cancel' to exit with out changes. "
-        instructions += 'You may also use the menu at the top of the page.'
-        context['instruction'] = instruction_text('create')
+        context['instructions'] = instruction_text('create')
         context['buttonlabel'] = 'Add'
-        context['instruction_class'] = 'instruction'
+        context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/'
         return context
     
@@ -295,9 +294,9 @@ class SubmissionUpdate(LoginRequiredMixin, UpdateView):
         context = super(SubmissionUpdate, self).get_context_data(**kwargs)
         print(context)
         context['pagetitle'] = 'Update submission'
-        context['instruction'] = instruction_text('update')
+        context['instructions'] = instruction_text('update')
         context['buttonlabel'] = 'Update'
-        context['instruction_class'] = 'instruction'
+        context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/'
         return context
 
@@ -340,9 +339,8 @@ class PublisherCreate(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(PublisherCreate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Add New Publisher'
-        instructions = "Enter the required information and and press the 'Add' button. Press 'Cancel' to exit with out changes. "
-        instructions += 'You may also use the menu at the top of the page.'
-        context['instructions'] = instructions
+        context['instructions'] = instruction_text('create')
+        context['instructionsclass'] ='instructions'
         context['buttonlabel'] = 'Add'
         context['cancelpath'] = '/submissions/publishers'
         return context
@@ -356,10 +354,9 @@ class PublisherUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(PublisherUpdate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Update Publisher Information'
-        instructions = "Make any changes and press the 'Update' button. Press 'Cancel' to exit with out changes. "
-        instructions += 'You may also use the menu at the top of the page.'
-        context['instructions'] = instructions
+        context['instructions'] = instruction_text('update')
         context['buttonlabel'] = 'Update'
+        context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/publishers'
         return context
 
@@ -398,15 +395,20 @@ class DispositionCreate(LoginRequiredMixin, CreateView):
 #     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
+        
+        if form.is_valid():
+            print('valid form.....................')
+        else:
+            print('not valid form....................')           
+        
         form.instance.created_by = self.request.user
         return super().form_valid(form)
     
     def get_context_data(self, **kwargs):
         context = super(DispositionCreate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Add New Disposition'
-        instructions = "Enter the required information and and press the 'Add' button. Press 'Cancel' to exit with out changes. "
-        instructions += 'You may also use the menu at the top of the page.'
         context['instructions'] = instruction_text('create')
+        context['instructionsclass'] = 'instructions'
         context['buttonlabel'] = 'Add'
         context['cancelpath'] = '/submissions/dispositions/'
         return context
@@ -422,6 +424,7 @@ class DispositionUpdate(LoginRequiredMixin, UpdateView):
         context['pagetitle'] = 'Update Disposition Information'
         context['instructions'] = instruction_text('update')
         context['buttonlabel'] = 'Update'
+        context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/dispositions'
         return context
 
