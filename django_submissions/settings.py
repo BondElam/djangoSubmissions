@@ -129,11 +129,11 @@ DATE_FORMAT = 'Y-m-d'
 # following single line added to deploy to heroku
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/static/'
+STATIC_URL = '/submissions/static/'
 
 # following tuple added to deploy to heroku
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'submissions/static'),
 )
 
 # added by me
