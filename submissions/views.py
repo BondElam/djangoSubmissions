@@ -125,6 +125,11 @@ def delete_submission(request, pk):
     return render(request, 'delete_view.html', context)
 
 @login_required
+def other_publishers(request, pk):
+    pass
+    
+
+@login_required
 def delete_publisher(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
     if request.method == "POST":  
@@ -260,8 +265,7 @@ def instruction_text(instruction_type = 'create'):
     else:
         instruction = 'There is an error in your instruction selection.'
         
-    return instruction
-        
+    return instruction        
 
 class SubmissionCreate(LoginRequiredMixin, CreateView):
     model = Submission
@@ -324,6 +328,16 @@ class PublisherListView(LoginRequiredMixin, ListView):
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
 #         return context
+
+    def get_queryset(self):
+        wp_file = self.request.GET['wp_file']
+        if wp_file == 'all':
+            queryset = Publisher.objects.all().order_by('publisher')
+        else:
+            print(wp_file)
+            queryset = Publisher.objects.filter(pk='1')
+            
+        return queryset
 
 class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher

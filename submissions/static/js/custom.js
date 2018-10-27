@@ -54,125 +54,51 @@ $(document).ready(function(){
 
 	/*-------------------------end dragging ------------------------*/
 	$(function(){
-
 		tbl.lastTop = -1;
 		setTableHeight();
-		repositionTable();
-		
+		repositionTable();		
 	});
+	
+	$("#btn-add").click(function(){
+		$("#hidden-data").val("{'action':'add'}");
+	})
 
-	$("#btn-edit").click(function() {		
-		if(tbl.rowIndex < 0){
-			alert("You must select a row to edit.");
+	$("#btn-edit").click(function() {	
+		var id = getSubmissionId();
+		if(id === '-1'){
+			alert('You must select a submission to edit.');
 			return false;
 		}
-		$("#table-submissions tr").each(function(){
-			if($(this).index() === tbl.rowIndex){	
-				var id = $(':nth-child(1)', this).text();		
-				$("#hidden-data").val("{'action':'edit', 'id':'" + id + "'}");
-			}
-		})
-	});
+		$("#hidden-data").val("{'action':'edit', 'id':'" + id + "'}");
+	})		
 	
-	$("#btn-delete").click(function(){		
-		if(tbl.rowIndex < 0 ){
-			alert("You must select a row to delete.");
+	$("#btn-delete").click(function(){	
+		var id = getSubmissionId();
+		if(id === '-1'){
+			alert('You must select a submission to delete.');
 			return false;
 		}
-		var sub = '';
-		$("#table-submissions tr").each(function(){
-			if($(this).index() === tbl.rowIndex){	
-				sub = $(':nth-child(1)', this).text();	
-//				alert(sub);
-			}
-		});
-//		alert($(location).attr('href') )
-		var addr = $(location).attr('href') + "delete/" + sub;
-//		alert(addr);		
-		$('#btn-delete').attr('href',addr);		
-		return;
+
+		$('#btn-delete').attr('href','delete/' + id);		
 	});
 	
-	
-//		$("#hidden-data").val("{'action':'edit', 'id':'201'}");
-		
+	$("#btn-other-pubs").click(function(){	
+		var id = getSubmissionId();
+		if(id === '-1'){
+			alert('You must select a submission for other publishers.');
+			return false;
+		}
 
-//		return
-//
-//		var buttonId = $(this).attr('id');
-//		if(tbl.rowIndex < 0 && buttonId === 'btn-edit'){
-//			popInfo("You must select a row to edit.");
-//			return;
-//		}
-//		if(tbl.rowIndex < 0 && buttonId === 'btn-delete'){
-//			popInfo("You must select a row to delete.");
-//			return;
-//		}
-//
-//		if(tbl.rowIndex < 0 && buttonId === 'btn-clone'){
-//			popInfo("You must select a row to clone.");
-//			return;
-//		}
-//
-//		
-//		var editPop = $('#edit-div').clone();
-//		editPop.find('input, button, td').each(function(){
-//			this.id = 'ed' + this.id;
-//		})
-//		editPop.attr('id', 'edin-edit-div');
-//		$('#pop-span').append(editPop);
-//		editPop.css('display','inline-block');
-//		editPop.css("visibility", "visible");
-//		centerMe(editPop);
-//
-//		if(buttonId === 'btn-add'){
-//			$('#edit-label').text("Add new submission...")
-//			$('#edin-btn-save').text('Add');
-//		}
-//		if(buttonId === 'btn-edit'){
-//			$('#edit-label').text("Edit existing submission...")
-//			$('#edin-btn-save').text('Edit');
-//		}			
-//		if(buttonId === 'btn-clone'){
-//			$('#edit-label').text("Clone existing submission...")
-//			$('#edin-btn-save').text('Add');
-//		}		
-//		if(buttonId === 'btn-delete'){
-//			$('#edit-label').text("Delete existing submission...")
-//			$('#edin-btn-save').text('Delete');
-//		}
-//		if(buttonId !== 'btn-add'){
-//			$("#table-submissions tr").each(function(){
-//				if($(this).index() === tbl.rowIndex){	
-//					if(buttonId !== 'btn-clone'){
-//						$("#edin-id").val($(':nth-child(1)', this).text());
-//					}
-//					$("#edin-story").val($(':nth-child(2)', this).text());
-//					$("#edin-words").val($(':nth-child(3)', this).text());
-//					$("#edin-file").val($(':nth-child(4)', this).text());
-//					
-//		  			var pub = $(':nth-child(5)', this).text();
-//		  			$("#edin-publisher option").each(function() {
-//					  	if($(this).text() === pub) {
-//					    	$(this).prop('selected', true);
-//					    	return true;
-//					  	}        
-//					});		
-//					$("#edin-submission-date").val($(':nth-child(6)', this).text());					
-//		  			var disp = $(':nth-child(7)', this).text();					
-//		  			$("#edin-disposition option").each(function() {
-//					  	if($(this).text() === disp) {
-//					    	$(this).prop('selected', true);
-//					    	return true;
-//					  	}        
-//					});						
-//					$("#edin-disposition-date").val($(':nth-child(8)', this).text());					
-//					return true;
-//				}
-//			});				
-//		};		
-//	});
-
+		var wp_file = 'all';
+		if(tbl.rowIndex >= 0){
+			$("#table-submissions tr").each(function(){
+				if($(this).index() === tbl.rowIndex){	
+					wp_file = $(':nth-child(4)', this).text();		
+				}
+			})
+		}		
+		$('#btn-other-pubs').attr('href','publishers?wp_file=' + wp_file);		
+	});
 
   	$("#table-submissions").on("click", "tbody tr", function(){
 
@@ -186,7 +112,6 @@ $(document).ready(function(){
   	})
 
 	$("#table-submissions").on("dblclick","tbody tr td", function(){
-//		 alert("in dblclick: " + $(this).text())
 
 	  	switch ($(this).index()){
 
@@ -229,8 +154,6 @@ $(document).ready(function(){
 	  	}
 	})
 
-	
-
 	$('#btn-clear').click(function(){
 
   		$("#search-story").val("");
@@ -254,107 +177,53 @@ $(document).ready(function(){
 	$('#btn-search').click(function(){	
 		tbl.lastTop = -1;
 		$("#hidden-data").val("{'action':'search'}");
-//		performSearch();
 	})
 
-	$(document).on('focusout', '.check-date', function(){
-		// alert("In check date");
-		date = ($(this).val());
-		if( date !== ''){
-			if( ! validateDate(date)){
-				popWarning(this, "Date must be in the form 'YYYY-MM-DD'.");				
-			}
-		}
-	})
+//	$(document).on('focusout', '.check-date', function(){
+//		// alert("In check date");
+//		date = ($(this).val());
+//		if( date !== ''){
+//			if( ! validateDate(date)){
+//				popWarning(this, "Date must be in the form 'YYYY-MM-DD'.");				
+//			}
+//		}
+//	})
 
-	$(document).on('click', '#table-dispositions tbody tr', function(){
+//	$(document).on('click', '#table-dispositions tbody tr', function(){
+//
+//		tbl.lastDispIndex = $(this).index();
+//
+//  		$("#table-dispositions tr").css('background-color', '#e0e0e0');
+//  		$("#table-dispositions tr").css('color', 'black');
+//  		$(this).css("background-color", "#449d44");
+//  		$(this).css("color", "white");
+//	})
 
-		tbl.lastDispIndex = $(this).index();
-
-  		$("#table-dispositions tr").css('background-color', '#e0e0e0');
-  		$("#table-dispositions tr").css('color', 'black');
-  		$(this).css("background-color", "#449d44");
-  		$(this).css("color", "white");
-	})
-
-	$(document).on('click', '#table-publishers tbody tr', function(){
-
-		tbl.lastPubIndex = $(this).index();
-
-  		$("#table-publishers tr").css('background-color', '#e0e0e0');
-  		$("#table-publishers tr").css('color', 'black');
-  		$(this).css("background-color", "#449d44");
-  		$(this).css("color", "white");
-	})
+//	$(document).on('click', '#table-publishers tbody tr', function(){
+//
+//		tbl.lastPubIndex = $(this).index();
+//
+//  		$("#table-publishers tr").css('background-color', '#e0e0e0');
+//  		$("#table-publishers tr").css('color', 'black');
+//  		$(this).css("background-color", "#449d44");
+//  		$(this).css("color", "white");
+//	})
 	
-	$("#btn-add").click(function(){
-//	$(document).on("click", '#btn-add', function(){
-		
-//		alert("in btn add click");
-
-		$("#hidden-data").val("{'action':'add'}");
-		// click the invisible submit_tag to submit form to controller
-		// $("#hidden-edit-submission").trigger('click');
-	})
-
-
 })
 
-//function performSearch(){
-//
-//	var sqlDict = {};
-//	var s = $('#srch-story').val(); 
-//	if(s !== ''){
-//		// s =  s.replace("'", "''");
-//		sqlDict['story__contains'] = s;
-//	}
-//	s = $('#srch-words').val();
-//	if(s !== ''){
-//		if(s !== 'None'){
-//			sqlDict['word_count__lte'] = s;
-//		}
-//	}
-//	s = $('#srch-file').val();
-//	if(s !== ''){		
-//		pos = s.indexOf(".");
-//		s = s.substr(0, pos);
-//		sqlDict['file__contains'] = s;			
-//	}	
-//	s = $('#srch-publisher option:selected').text();
-//	if(s !== ''){
-//		// s = s.replace("'", "''");
-//		sqlDict["publisher"] = s;
-//	}
-//	s = $('#srch-submission-date').val();
-//	if(s !== ''){
-//		sqlDict["date_submitted__gte"] = s;
-//	}
-//	s = $('#srch-disposition option:selected').text();
-//	if(s !== ''){
-//		sqlDict["disposition"] = s;
-//	};
-//
-//	var csrftoken=getCookie('csrftoken');
-//	$.ajaxSetup({
-//	    beforeSend: function(xhr, settings) {
-//	        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-//	    }
-//	});
-//
-//	$.ajax({url: "../new_search/", 
-//		type: "POST",
-//		data: $.param(sqlDict),
-//		success: function(result){
-//			$("#tbody-replaceable").replaceWith(result);	
-//			setTableHeight();
-//			repositionTable();
-//    	},
-//    	error: function(result){
-//    		alert("here is result: " + result["responseText"]);
-//    		console.log(result);
-//		} 
-//	});
-//}
+function getSubmissionId(){
+	
+	var id = '-1';
+	if(tbl.rowIndex >= 0){
+		$("#table-submissions tr").each(function(){
+			if($(this).index() === tbl.rowIndex){	
+				id = $(':nth-child(1)', this).text();		
+			}
+		})
+	}
+	return id;
+}
+
 
 function getCookie(name) {
     var cookieValue = null;
@@ -499,41 +368,41 @@ function repositionTable(){
 	}	
 }
 
-function editDisposition(){
+//function editDisposition(){
+//
+//	beforeSend();
+//	$.ajax({url: "../dispositions_table/", 
+//		type: "POST",
+//		// data: $.param(sqlDict),
+//		success: function(result){
+//			myPop('dispositions_table', "Select Disposition", result, '','', 0);
+//			tbl.lastDispIndex = -1;
+//    	},
+//    	error: function(result){
+//    		alert("here is result: " + result["responseText"]);
+//    		console.log(result);
+//		} 
+//	});
+//
+//}
 
-	beforeSend();
-	$.ajax({url: "../dispositions_table/", 
-		type: "POST",
-		// data: $.param(sqlDict),
-		success: function(result){
-			myPop('dispositions_table', "Select Disposition", result, '','', 0);
-			tbl.lastDispIndex = -1;
-    	},
-    	error: function(result){
-    		alert("here is result: " + result["responseText"]);
-    		console.log(result);
-		} 
-	});
-
-}
-
-function editPublisher(){
-
-	beforeSend();
-	$.ajax({url: "../publishers_table/", 
-		type: "POST",
-		// data: $.param(sqlDict),
-		success: function(result){
-			myPop('publishers_table', "Select Publisher", result, '','', 0);
-			tbl.lastPubIndex = -1;
-    	},
-    	error: function(result){
-    		alert("here is result: " + result["responseText"]);
-    		console.log(result);
-		} 
-	});
-
-}
+//function editPublisher(){
+//
+//	beforeSend();
+//	$.ajax({url: "../publishers_table/", 
+//		type: "POST",
+//		// data: $.param(sqlDict),
+//		success: function(result){
+//			myPop('publishers_table', "Select Publisher", result, '','', 0);
+//			tbl.lastPubIndex = -1;
+//    	},
+//    	error: function(result){
+//    		alert("here is result: " + result["responseText"]);
+//    		console.log(result);
+//		} 
+//	});
+//
+//}
 
 function availablePublishers(){
 	

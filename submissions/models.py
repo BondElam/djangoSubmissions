@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 from django.urls import reverse
+from  django.core.validators import URLValidator
 
 class Disposition(models.Model):
     disposition = models.CharField(max_length=30, unique=True)
@@ -13,7 +14,7 @@ class Disposition(models.Model):
     
 class Publisher(models.Model):
     publisher = models.CharField(max_length=50, unique=True)
-    web_address = models.CharField(max_length=256, blank=True, null=True)
+    web_address = models.CharField(max_length=256, blank=True, null=True, validators=[URLValidator(schemes=('http', 'https'))])
     min_words = models.IntegerField(blank=True, null=True) 
     max_words = models.IntegerField(blank=True, null=True)
     remarks = models.TextField(blank=True, null=True)
