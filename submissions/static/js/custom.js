@@ -69,7 +69,7 @@ $(document).ready(function(){
 			alert('You must select a submission to edit.');
 			return false;
 		}
-		$("#hidden-data").val("{'action':'edit', 'id':'" + id + "'}");
+		$('#btn-edit').attr('href','/submissions/update/' + id);
 	})		
 	
 	$("#btn-delete").click(function(){	
@@ -79,7 +79,7 @@ $(document).ready(function(){
 			return false;
 		}
 
-		$('#btn-delete').attr('href','delete/' + id);		
+		$('#btn-delete').attr('href','/submissions/delete/' + id);		
 	});
 	
 	$("#btn-other-pubs").click(function(){	
@@ -97,7 +97,7 @@ $(document).ready(function(){
 				}
 			})
 		}		
-		$('#btn-other-pubs').attr('href','publishers?wp_file=' + wp_file);		
+		$('#btn-other-pubs').attr('href','/submissions/publishers?wp_file=' + wp_file);		
 	});
 
   	$("#table-submissions").on("click", "tbody tr", function(){

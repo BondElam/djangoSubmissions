@@ -3,8 +3,7 @@
 {% block content %}
 
 <h1 style='text-align: center;'>Submissions</h1>
-
-<form action='/submissions/router/' method='post' style='margin: 0 auto;width:1000px'>
+<form action='/submissions/search/' method='post' style='margin: 0 auto;width:1000px'>
 	{% csrf_token %}
 	<input id='hidden-data' name='hidden-data' type='text' style='display:none;'>
 	<div style='display:inline;'>
@@ -59,11 +58,9 @@
 	</table>
 	<div style='text-align: center;'>
 		<button id='btn-search' name='btn-search' class='button' type='submit' value='search'>Search</button>
-		<button id='btn-clear' type='submit' class='button' value='clear'>Clear</button>
-	<!-- 	<button id='btn-add' name='btn-add' class='button' type='submit' value='add'>Add</button> -->
-		<a href='/submissions/add' class='button'>Add</a>
-		<button id='btn-edit' name='btn-edit' class='button' type='submit' value='edit'>Edit</button>
-	<!--  	<button id='btn-delete' type='submit' class='button' value='delete'>Delete</button> -->
+		<a id='btn-clear' class='button' >Clear</button>
+		<a id='btn-add' href='/submissions/add' class='button'>Add</a>
+		<a id='btn-edit' class='button'>Edit</a>
 		<a id='btn-delete' class='button'>Delete</a>
 		<a id='btn-other-pubs' class='button'>Other Pubs</a>
 	</div>

@@ -30,63 +30,6 @@ def user_logout(request):
     logout(request)
     return redirect('/accounts/login')
     
-
-# def add_submission(request):
-#   
-#     if request.method == "POST":
-#         
-#         form = NewSubmissionForm(request.POST)
-#         print(request.POST)
-#         if form.is_valid():
-#             submission = form.save(commit=False)            
-#             submission.user = request.user
-#             submission.save()   
-#             return display_submissions({}, request) 
-# 
-#     else:
-#         form = NewSubmissionForm()
-#         
-#     return render(request,'new_submission.html', {'form':form})
-
-# def new_publisher(request):
-#   
-#     if request.method == "POST":        
-#         form = NewPublisherForm(request.POST)
-#         print(request.POST)
-#         if form.is_valid():
-#             publisher = form.save(commit=False)            
-#             publisher.user = request.user
-#             publisher.save()   
-#             return display_submissions({}, request) 
-# 
-#     else:
-#         form = NewPublisherForm()
-#         
-#     return render(request,'new_publisher.html', {'form':form})
-
-# def dispositions(request):
-#     current_user = request.user
-#     print("current user: " + str(current_user))
-#     
-#     for d in Disposition.objects.all():
-#         print (str(d.id) + ' ' + d.disposition)    
-#         
-#     for d in Disposition.objects.all():
-#         print (d)
-#         
-#     dispositions_dict = Disposition.objects.all()
-#     context = {'dispositions': dispositions_dict.values()}
-#     return render(request, 'dispositions.html', context)
-#     
-# def publishers(request):
-# 
-#     for p in Publisher.objects.all():
-#         print (str(p.id) + ' ' + p.publisher)    
-# 
-#     publishers_dict = Publisher.objects.all()
-#     context = {'publishers': publishers_dict.values()}
-#     return render(request, 'publishers.html', context)
-
 @login_required
 def delete_submission(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
@@ -107,12 +50,7 @@ def delete_submission(request, pk):
     
     dispositions_dict = Disposition.objects.filter(pk=data['Disposition Id'])
     data['Disposition']=dispositions_dict.values()[0]['disposition']
-
     data['User'] = User.objects.get(pk=data['User Id'])
-    
-#     del data['User Id']
-#     del data['Publisher Id']
-#     del data['Disposition Id']
 
     context = {}    
     context['data'] = data 
@@ -123,11 +61,6 @@ def delete_submission(request, pk):
     context['cancelpath'] = '/submissions'
      
     return render(request, 'delete_view.html', context)
-
-@login_required
-def other_publishers(request, pk):
-    pass
-    
 
 @login_required
 def delete_publisher(request, pk):    
@@ -148,7 +81,7 @@ def delete_publisher(request, pk):
     context['instruction'] = instruction_text('delete')
     context['buttonlabel'] = 'Delete'
     context['instruction_class'] = 'warning'
-    context['cancelpath'] = '/submissions/publishers'
+    context['cancelpath'] = '/submissions/publishers?wp_file=__all'
      
     return render(request, 'delete_view.html', context)
 
@@ -175,20 +108,6 @@ def delete_disposition(request, pk):
      
     return render(request, 'delete_view.html', context)
 
-
-# def submissions(request):
-# 
-# #     print(request)
-#     publishers_dict = Publisher.objects.all().order_by('publisher')
-#     dispositions_dict = Disposition.objects.all().order_by('disposition')
-#     submissions_dict = Submission.objects.select_related('disposition').select_related('publisher').all().order_by('id')
-#     context = {'submissions': submissions_dict,
-#                'w': width_dict,
-#                 'dispositions': dispositions_dict,
-#                'publishers': publishers_dict,
-#                }
-#     return render(request, 'submissions.html', context)
-
 @login_required
 def display_submissions(request, sql_dict={'id__gte':0}):
 
@@ -203,20 +122,6 @@ def display_submissions(request, sql_dict={'id__gte':0}):
                'publishers': publishers_dict,
                }
     return render(request, 'submissions.html', context)
-
-@login_required
-def router(request):
-#   print(request.POST) #request.POSt is a list of strings, so need to convert my stuff to real dictionaries
-    post_dict = ast.literal_eval(request.POST['hidden-data'])
-    if post_dict['action'] == 'search':
-        return search_submissions(request)
-    elif post_dict['action'] == 'edit':
-        print(post_dict['id'])
-        return redirect('/submissions/update/' + post_dict['id'])
-    elif post_dict['action'] == 'delete':
-        delete_submission(dict['id'])
-        
-    return HttpResponse('too bad')
 
 @login_required
 def search_submissions(request):
@@ -242,9 +147,6 @@ def search_submissions(request):
             sql_dict['disposition_id__exact'] = request.POST[k]
         elif k == 'disposition_date':
             sql_dict['disposition_date__gte'] = request.POST[k]
-            
-#         print('sql_dict...')
-#         print(sql_dict)
             
     return display_submissions(request, sql_dict) 
 
@@ -272,7 +174,6 @@ class SubmissionCreate(LoginRequiredMixin, CreateView):
     fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
     template_name = 'detail_view.html'
     success_url = '/submissions/'
-#     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
         form.instance.user_id = self.request.user.pk
@@ -304,39 +205,20 @@ class SubmissionUpdate(LoginRequiredMixin, UpdateView):
         context['cancelpath'] = '/submissions/'
         return context
 
-# class SubmissionDelete(DeleteView):
-#     model = Submission
-#     fields = ['story', 'word_count', 'file', 'publisher', 'date_submitted', 'disposition', 'disposition_date']
-#     template_name = 'detail_view.html'
-#     success_url = reverse_lazy('/submissions/')
-#     
-#     def get_context_data(self, **kwargs):
-#         context = super(SubmissionDelete, self).get_context_data(**kwargs)
-#         print(context)
-#         context['pagetitle'] = 'Delete submission'
-#         context['instruction'] = instruction_text('delete')
-#         context['buttonlabel'] = 'Delete'
-#         context['instruction_class'] = 'warning'
-#         context['cancelpath'] = '/submissions/'
-#         return context
-
 class PublisherListView(LoginRequiredMixin, ListView):
     model = Publisher
-#     paginate_by = 5
     template_name = 'publishers.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         return context
 
     def get_queryset(self):
         wp_file = self.request.GET['wp_file']
-        if wp_file == 'all':
+        if wp_file == '__all':
             queryset = Publisher.objects.all().order_by('publisher')
         else:
-            print(wp_file)
-            queryset = Publisher.objects.filter(pk='1')
-            
+            pos = wp_file.find('.')
+            if pos >=0:
+                wp_file = wp_file[0:pos]
+            used_ids = Submission.objects.filter(file__icontains = wp_file).values('publisher_id').distinct()                
+            queryset = Publisher.objects.exclude(id__in = used_ids)            
         return queryset
 
 class PublisherCreate(LoginRequiredMixin, CreateView):
@@ -356,7 +238,7 @@ class PublisherCreate(LoginRequiredMixin, CreateView):
         context['instructions'] = instruction_text('create')
         context['instructionsclass'] ='instructions'
         context['buttonlabel'] = 'Add'
-        context['cancelpath'] = '/submissions/publishers'
+        context['cancelpath'] = '/submissions/publishers?wp_file=__all'
         return context
 
 class PublisherUpdate(LoginRequiredMixin, UpdateView):
@@ -371,49 +253,24 @@ class PublisherUpdate(LoginRequiredMixin, UpdateView):
         context['instructions'] = instruction_text('update')
         context['buttonlabel'] = 'Update'
         context['instructionsclass'] = 'instructions'
-        context['cancelpath'] = '/submissions/publishers'
+        context['cancelpath'] = '/submissions/publishers?wp_file=__all'
         return context
-
-    
-# class PublisherDelete(LoginRequiredMixin, DeleteView):
-#     model = Publisher
-#     fields = ['publisher']
-# #     template_name = 'detail_view.html'
-#     template_name = 'message.html'
-#     success_url = reverse_lazy('publisher-list')
-#     
-#     def get_context_data(self, **kwargs):
-#         context = super(PublisherDelete, self).get_context_data(**kwargs)
-#         print( context)
-#         return context
-# 
-#     def get_queryset(self):
-#         qs = super(PublisherDelete, self).get_queryset()
-#         print(qs)        
-#         return qs
 
 class DispositionListView(LoginRequiredMixin, ListView):
     model = Disposition
-#     paginate_by = 5
     template_name = 'dispositions.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         return context
 
 class DispositionCreate(LoginRequiredMixin, CreateView):
     model = Disposition
     fields = ['disposition']
     template_name = 'detail_view.html'
     success_url = '/submissions/dispositions/'
-#     initial = {'bond': 'my_button'}
     
-    def form_valid(self, form):
-        
+    def form_valid(self, form):        
         if form.is_valid():
             print('valid form.....................')
         else:
-            print('not valid form....................')           
+            print('not valid form....................')   
         
         form.instance.created_by = self.request.user
         return super().form_valid(form)
@@ -442,20 +299,4 @@ class DispositionUpdate(LoginRequiredMixin, UpdateView):
         context['cancelpath'] = '/submissions/dispositions'
         return context
 
-    
-# class DispositionDelete(LoginRequiredMixin, DeleteView):
-#     model = Publisher
-#     fields = ['disposition']
-# #     template_name = 'detail_view.html'
-#     template_name = 'message.html'
-#     success_url = reverse_lazy('dispositions')
-#     
-#     def get_context_data(self, **kwargs):
-#         context = super(PublisherDelete, self).get_context_data(**kwargs)
-#         print( context)
-#         return context
-# 
-#     def get_queryset(self):
-#         qs = super(PublisherDelete, self).get_queryset()
-#         print(qs)        
-#         return qs
+
