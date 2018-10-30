@@ -7,7 +7,7 @@
 	<p class='{{instructionsclass}}'>{{instructions}}</p>
 	<form method="post">
 	  {% csrf_token %}
-	  <table class='table-forms' >
+	  <table class='table-forms'>
 	  {{ form.as_table }}
 	  </table>
 	  <button type="submit" class='button'>{{ buttonlabel }}</button>

@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from .models import Disposition, Publisher, Submission
 from django.http import HttpResponse
 import ast
-from .forms import NewSubmissionForm, NewPublisherForm, ListPublishersForm
+# from submissions.forms import NewSubmissionForm, NewPublisherForm, ListPublishersForm
 from django.shortcuts import redirect
 from django import forms
 from django.views.generic.list import ListView
@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 # This should be the only place you need to make changes.
 width_dict = {"id_width": '40px',
@@ -265,6 +266,7 @@ class DispositionCreate(LoginRequiredMixin, CreateView):
     fields = ['disposition']
     template_name = 'detail_view.html'
     success_url = '/submissions/dispositions/'
+    success_message = 'Your disposition has been added.'
     
     def form_valid(self, form):        
         if form.is_valid():
@@ -298,5 +300,61 @@ class DispositionUpdate(LoginRequiredMixin, UpdateView):
         context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/dispositions'
         return context
+    
+class UserListView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'users.html'
+    ordering = ['username']
+    
+class UserCreate(LoginRequiredMixin, CreateView):
+    model = User
+    fields = ['username' , 'first_name', 'last_name', 'email']
+    template_name = 'detail_view.html'
+    success_url = '/submissions/users/'
+    
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserCreate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Add New User'
+        context['instructions'] = instruction_text('create')
+        context['instructionsclass'] ='instructions'
+        context['buttonlabel'] = 'Add'
+        context['cancelpath'] = '/submissions/users'
+        return context
+    
+class UserUpdate(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = ['id', 'username' , 'first_name', 'last_name', 'email']
+    template_name = 'detail_view.html'
+    success_url = '/submissions/users/'
+    
+    def get_context_data(self, **kwargs):
+        context = super(UserUpdate, self).get_context_data(**kwargs)
+        context['pagetitle'] = 'Update User Information'
+        context['instructions'] = instruction_text('update')
+        context['buttonlabel'] = 'Update'
+        context['instructionsclass'] = 'instructions'
+        context['cancelpath'] = '/submissions/users'
+        return context
+    
+    def get_form(self, **kwargs):
+        form = super(UserUpdate, self).get_form(**kwargs)
+        form.fields['password'] = forms.CharField()
+        form.fields['confirm_password'] = forms.CharField()
+        return form
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        if form['password'].value() == form['confirm_password'].value():
+            self.object.set_password(form['password'].value())    
+            self.object.save()
+            return super(UserUpdate, self).form_valid(form)
+        else:
+            messages.error(self.request, "Your passwords must match.")
+            return self.render_to_response(self.get_context_data(form=form))
+    
 
 
