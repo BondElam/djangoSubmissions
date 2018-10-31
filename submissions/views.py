@@ -312,9 +312,19 @@ class UserCreate(LoginRequiredMixin, CreateView):
     template_name = 'detail_view.html'
     success_url = '/submissions/users/'
     
+#     def form_valid(self, form):
+#         form.instance.created_by = self.request.user
+#         return super().form_valid(form)
+    
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
+        self.object = form.save(commit=False)                         
+        if form['password'].value() == form['confirm_password'].value():
+            self.object.set_password(form['password'].value())    
+            self.object.save()
+            return super(UserCreate, self).form_valid(form)
+        else:
+            form.add_error('password', 'Password and Confirm Password must match.')
+            return super(UserCreate, self).form_invalid(form)
     
     def get_context_data(self, **kwargs):
         context = super(UserCreate, self).get_context_data(**kwargs)
@@ -324,6 +334,12 @@ class UserCreate(LoginRequiredMixin, CreateView):
         context['buttonlabel'] = 'Add'
         context['cancelpath'] = '/submissions/users'
         return context
+    
+    def get_form(self, **kwargs):
+        form = super(UserCreate, self).get_form(**kwargs)
+        form.fields['password'] = forms.CharField()
+        form.fields['confirm_password'] = forms.CharField()
+        return form
     
 class UserUpdate(LoginRequiredMixin, UpdateView):
     model = User
@@ -347,14 +363,15 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
         return form
     
     def form_valid(self, form):
-        self.object = form.save(commit=False)
+        self.object = form.save(commit=False)                         
         if form['password'].value() == form['confirm_password'].value():
             self.object.set_password(form['password'].value())    
             self.object.save()
             return super(UserUpdate, self).form_valid(form)
         else:
-            messages.error(self.request, "Your passwords must match.")
-            return self.render_to_response(self.get_context_data(form=form))
+            form.add_error('password', 'Password and Confirm Password must match.')
+            return super(UserUpdate, self).form_invalid(form)
+
     
 
 

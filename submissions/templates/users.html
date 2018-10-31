@@ -8,10 +8,10 @@
 	  <table class='table-forms' >
 	  	{% for user in object_list %}
 	  		<tr>
-	  			<td style='text-align:left;'>{{user.username}}</td>
+	  			<td style='text-align:left; font-size:large;'>{{user.username}}...</td>
 	  			<td>
-	  				<a href='/submissions/user/{{user.id}}'>Edit</a>   
-	  				<a href= '/submissions/user/delete/{{user.id}}#'>Delete</a>
+	  				<a href='/submissions/user/{{user.id}}'>Edit</a>     
+	  				<a href= '/submissions/user/delete/{{user.id}}'>Delete</a>
 	  			</td>	  		
 	  		</tr>
 	  	{% endfor %}
