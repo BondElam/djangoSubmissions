@@ -13,6 +13,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 # This should be the only place you need to make changes.
 width_dict = {"id_width": '40px',
@@ -66,9 +67,14 @@ def delete_submission(request, pk):
 @login_required
 def delete_publisher(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
+    context = {}  
     if request.method == "POST":  
-        Publisher.objects.filter(pk=pk).delete()
-        return redirect('/submissions/publishers')
+        try:
+            Publisher.objects.filter(pk=pk).delete()
+            return redirect('/submissions/publishers?wp_file=__all')
+        except Exception as e:
+            print(e)
+            context['errormessage'] = 'You cannot delete a publisher associated with a current submission.'            
 
     pub = Publisher.objects.filter(pk=pk).values()[0]
     data = {}
@@ -76,7 +82,7 @@ def delete_publisher(request, pk):
         kk = k.replace('_', ' ')
         kk = kk.title()
         data[kk] = v
-    context = {}     
+   
     context['data'] = data 
     context['pagetitle'] = 'Delete Publisher'
     context['instruction'] = instruction_text('delete')
@@ -89,9 +95,14 @@ def delete_publisher(request, pk):
 @login_required
 def delete_disposition(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
+    context = {}
     if request.method == "POST":  
-        Disposition.objects.filter(pk=pk).delete()
-        return redirect('/submissions/dispositions')
+        try:
+            Disposition.objects.filter(pk=pk).delete()
+            return redirect('/submissions/dispositions')
+        except Exception as e:
+            print(e)
+            context['errormessage'] = 'You cannot delete a disposition associated with a current submission.'         
 
     disp = Disposition.objects.filter(pk=pk).values()[0]
     data = {}
@@ -99,7 +110,7 @@ def delete_disposition(request, pk):
         kk = k.replace('_', ' ')
         kk = kk.title()
         data[kk] = v
-    context = {}     
+    
     context['data'] = data 
     context['pagetitle'] = 'Delete Disposition'
     context['instruction'] = instruction_text('delete')
@@ -350,7 +361,9 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UserUpdate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Update User Information'
-        context['instructions'] = instruction_text('update')
+        instructions = instruction_text('update')
+        instructions += ' If you do not want to update the password, leave the fields blank.'
+        context['instructions'] = instructions
         context['buttonlabel'] = 'Update'
         context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/users'
@@ -358,18 +371,32 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     
     def get_form(self, **kwargs):
         form = super(UserUpdate, self).get_form(**kwargs)
-        form.fields['password'] = forms.CharField()
-        form.fields['confirm_password'] = forms.CharField()
+        form.fields['new_password'] = forms.CharField(required=False)
+        form.fields['confirm_password'] = forms.CharField(required=False)
         return form
     
     def form_valid(self, form):
-        self.object = form.save(commit=False)                         
-        if form['password'].value() == form['confirm_password'].value():
-            self.object.set_password(form['password'].value())    
+        self.object = form.save(commit=False)  
+        changed_password_id = self.object.id
+        current_user_id = self.request.user.id                       
+        if form['new_password'].value() == form['confirm_password'].value():
+            if form['new_password'].value(): # truthy works here
+#                 print('In update password...................')
+#                 print(self.request)
+#                 print(self.object.id)
+#                 print(self.request.user.id)
+                self.object.set_password(form['new_password'].value())   
+
             self.object.save()
+            if changed_password_id == current_user_id:
+#                 print('in login user after password change')
+#                 print(self.request.user)
+#                 print(self.object.username)
+                user = authenticate(username=self.object.username, password=form['new_password'].value())
+                login(self.request, user)
             return super(UserUpdate, self).form_valid(form)
         else:
-            form.add_error('password', 'Password and Confirm Password must match.')
+            form.add_error('new_password', "'New Password' and 'Confirm Password' must match.")
             return super(UserUpdate, self).form_invalid(form)
 
     

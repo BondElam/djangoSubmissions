@@ -1,5 +1,5 @@
 from django import forms
-# from .models import Submission, Publisher, Disposition
+from .models import Submission, Publisher, Disposition
 # 
 # class NewSubmissionForm(forms.ModelForm):
 #     
@@ -18,16 +18,16 @@ from django import forms
 #                   'date_submitted', 'disposition', 'disposition_date',)
 #         
 # class NewPublisherForm(forms.ModelForm):
-#     
+#      
 #     class Meta:
 #         model = Publisher
 #         fields = ('publisher', 'web_address','min_words', 'max_words',
 #                   'remarks',)
-#         
+#          
 # class ListPublishersForm(forms.ModelForm):
-# 
+#  
 #     class Meta:
 #         model = Publisher
 #         fields = ('publisher', 'web_address',)
-#         
-        
+         
+          

@@ -6,6 +6,7 @@
 	<p class='{{instruction_class}}'>{{instruction}}</p>
 	<form method="post" >
 	  {% csrf_token %}
+	  <p class='{{instruction_class}}'>{{ errormessage }} </p>
 	  <table class='table-forms' >
 	  	{% for k, v in data.items %}
 	  		<tr>
