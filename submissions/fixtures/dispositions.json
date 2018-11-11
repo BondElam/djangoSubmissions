@@ -1,0 +1,23 @@
+[
+  {
+    "model": "submissions.Disposition",
+    "pk": 1,
+    "fields": {
+      "disposition": "Submitted"
+    }
+  },
+  {
+    "model": "submissions.Disposition",
+    "pk": 2,
+    "fields": {
+      "disposition": "Sold"
+    }
+  },
+  {
+    "model": "submissions.Disposition",
+    "pk": 3,
+    "fields": {
+      "disposition": "Rejected"
+    }    
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$Y9pCelGY3xVC$IQOBrYTk5+7FOBBuDURaN0iiWW/RWlTUczKNjj4G9Rc=",
+      "last_login": "2018-11-10T22:46:40.105Z",
+      "is_superuser": true,
+      "username": "bond",
+      "first_name": "Bond",
+      "last_name": "Elam",
+      "email": "bond@elam.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-09-27T18:53:55Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$pKCqe3HoUNEi$+0etaqgf2eHdZlSRpJScOcahlazlEi4rTPjVSRVrsLI=",
+      "last_login": "2018-11-08T19:13:45.364Z",
+      "is_superuser": false,
+      "username": "mark",
+      "first_name": "Mark",
+      "last_name": "Twain",
+      "email": "mark@twain.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-28T19:21:04Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

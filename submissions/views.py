@@ -27,10 +27,13 @@ width_dict = {"id_width": '40px',
     "scrollbar_width": '15px',
 }
 
+def user_login(request):
+    return redirect('/accounts/login/')
+
 def user_logout(request):
     print('in logout ................................................')
     logout(request)
-    return redirect('/accounts/login')
+    return redirect('/accounts/login/')
     
 @login_required
 def delete_submission(request, pk):    

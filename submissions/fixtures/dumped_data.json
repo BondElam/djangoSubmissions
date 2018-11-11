@@ -1,0 +1,3522 @@
+base directory: /home/bond/eclipse-workspace/django_submissions
+[
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "auth",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "submissions",
+      "model": "disposition"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "submissions",
+      "model": "publisher"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "submissions",
+      "model": "submission"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "6cuxj330dkr6aaq3wmbsaa4yi5lk3z80",
+    "fields": {
+      "session_data": "YmE1MWMxYmY0Y2I0NWY0NjU0ZWJlZjMwZGMyMGE4Njk0MTliMTkwYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmM2ZhMDM1NGZmODRmNDdjYmQ0YmVkNjE4YjAyNmRhMTRiZGZhY2Q2In0=",
+      "expire_date": "2018-11-24T16:58:24.299Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "c68qo6u0zu49csqtns8cedsiwnvx11ev",
+    "fields": {
+      "session_data": "YTIxMWY0M2NjZjkxYjlmYzVmYzk2NjE3NTc5NTMxMjY5MjhlMjJkODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmNDQzOTg0NjU5ODE5ODhkODQ0OTc5NTgyN2YyMDMwMjA2MTZmMDQ3In0=",
+      "expire_date": "2018-10-15T21:19:20.236Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "cf21i8mlu8ie72mgfzltpvzt1n25esst",
+    "fields": {
+      "session_data": "YmE1MWMxYmY0Y2I0NWY0NjU0ZWJlZjMwZGMyMGE4Njk0MTliMTkwYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmM2ZhMDM1NGZmODRmNDdjYmQ0YmVkNjE4YjAyNmRhMTRiZGZhY2Q2In0=",
+      "expire_date": "2018-11-20T21:34:56.536Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "dqrc9s5vj7w4jmr1jyuclioqrnqzxvb7",
+    "fields": {
+      "session_data": "YmE1MWMxYmY0Y2I0NWY0NjU0ZWJlZjMwZGMyMGE4Njk0MTliMTkwYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmM2ZhMDM1NGZmODRmNDdjYmQ0YmVkNjE4YjAyNmRhMTRiZGZhY2Q2In0=",
+      "expire_date": "2018-11-24T22:46:40.113Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ry5t4us9p422su660o4ouqliykxkvrkk",
+    "fields": {
+      "session_data": "YmE1MWMxYmY0Y2I0NWY0NjU0ZWJlZjMwZGMyMGE4Njk0MTliMTkwYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmM2ZhMDM1NGZmODRmNDdjYmQ0YmVkNjE4YjAyNmRhMTRiZGZhY2Q2In0=",
+      "expire_date": "2018-11-24T16:48:21.929Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "yxj0h03ndxzr1e0ucaxekt84y1w2vlm7",
+    "fields": {
+      "session_data": "YmE1MWMxYmY0Y2I0NWY0NjU0ZWJlZjMwZGMyMGE4Njk0MTliMTkwYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJmM2ZhMDM1NGZmODRmNDdjYmQ0YmVkNjE4YjAyNmRhMTRiZGZhY2Q2In0=",
+      "expire_date": "2018-11-22T19:24:35.980Z"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 1,
+    "fields": {
+      "disposition": "Rejected"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 2,
+    "fields": {
+      "disposition": "Sold"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 3,
+    "fields": {
+      "disposition": "Rework"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 4,
+    "fields": {
+      "disposition": "Submitted"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 5,
+    "fields": {
+      "disposition": "Available"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 6,
+    "fields": {
+      "disposition": "Withdrawn"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 7,
+    "fields": {
+      "disposition": "Unsure"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 8,
+    "fields": {
+      "disposition": "Needs Update"
+    }
+  },
+  {
+    "model": "submissions.disposition",
+    "pk": 12,
+    "fields": {
+      "disposition": "Test Disposition"
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 1,
+    "fields": {
+      "publisher": "Analog",
+      "web_address": "http://www.analogsf.com/contact-us/writers-guidelines/",
+      "min_words": null,
+      "max_words": null,
+      "remarks": ""
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 2,
+    "fields": {
+      "publisher": "F&SF",
+      "web_address": "https://www.sfsite.com/fsf/glines.htm",
+      "min_words": null,
+      "max_words": 25000,
+      "remarks": "F&SF has no formula for fiction. The speculative element may be slight, but it should be present."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 3,
+    "fields": {
+      "publisher": "Azimov's",
+      "web_address": "http://www.asimovs.com/contact-us/writers-guidelines/",
+      "min_words": 1000,
+      "max_words": 20000,
+      "remarks": ""
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 4,
+    "fields": {
+      "publisher": "Daily Science Fiction",
+      "web_address": "http://dailysciencefiction.com/submit/story/guidelines",
+      "min_words": 100,
+      "max_words": 1500,
+      "remarks": "We need short short fiction, especially flash fiction. Among our featured stories, a shorter tale will get an extra nudge on the scale when weighed against a longer one.."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 5,
+    "fields": {
+      "publisher": "Strange Horizons",
+      "web_address": "http://www.strangehorizons.com/guidelines/fiction.php",
+      "min_words": 0,
+      "max_words": 10000,
+      "remarks": "Prefer under 5000 words. Opening to submissions March 6, 2017,"
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 6,
+    "fields": {
+      "publisher": "Clark's World",
+      "web_address": "http://clarkesworldmagazine.com/submissions/",
+      "min_words": 1000,
+      "max_words": 16000,
+      "remarks": "Responds within 48 hours."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 7,
+    "fields": {
+      "publisher": "Interzone",
+      "web_address": "http://ttapress.com/interzone/guidelines/",
+      "min_words": null,
+      "max_words": 10000,
+      "remarks": "UK magazine."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 8,
+    "fields": {
+      "publisher": "Alfred Hitchcock",
+      "web_address": "https://www.themysteryplace.com/ahmm/guidelines/",
+      "min_words": null,
+      "max_words": 12000,
+      "remarks": ""
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 9,
+    "fields": {
+      "publisher": "Apex",
+      "web_address": "http://www.apex-magazine.com/submission-guidelines/",
+      "min_words": null,
+      "max_words": 7500,
+      "remarks": "Currently open to submissoins. Takes about 30 days to respond."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 10,
+    "fields": {
+      "publisher": "Flash Fiction Online",
+      "web_address": "http://flashfictiononline.com/main/submission-guidelines/",
+      "min_words": 500,
+      "max_words": 1000,
+      "remarks": "No personal info in manuscript. Times Roman, not Courier. Automatic paragraph indents."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 11,
+    "fields": {
+      "publisher": "Fantastic Stories",
+      "web_address": "http://www.fantasticstoriesoftheimagination.com/submission-guidelines/",
+      "min_words": null,
+      "max_words": 3000,
+      "remarks": "Closed to submissions 4/4/17.We want stories that cover the entire science fiction and fantasy spectrum. We love everything from magic realism to hard SF. We want a story to surprise us and to take us to unexpected places. We love word play, and would like to see stories with a literary bent, though decidedly not a pretentious bent."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 12,
+    "fields": {
+      "publisher": "Lightspeed Magazine",
+      "web_address": "http://www.lightspeedmagazine.com/about/guidelines/",
+      "min_words": 1500,
+      "max_words": 10000,
+      "remarks": "Accepts 1,500 to 10,000 words. Prefers under 5000 words. Open as of 4/24/17, but only to Fantasy, not Science Fiction."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 13,
+    "fields": {
+      "publisher": "Beneath Ceaseless Skys",
+      "web_address": "http://www.beneath-ceaseless-skies.com/submissions/",
+      "min_words": 11000,
+      "max_words": null,
+      "remarks": "Secondary-World Setting: We want stories set in what Tolkien called a “secondary world”: some other world that is different from our own primary world in some way. It could be different in terms of zoology (non-human creatures), ecology (climate), or physical laws (the presence of magic). It could be set on Earth but an Earth different from our primary world in terms of time (the historical past) or history (alternate history). "
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 14,
+    "fields": {
+      "publisher": "Terraform ",
+      "web_address": "http://motherboard.vice.com/read/how-to-submit-stories-to-terraform",
+      "min_words": null,
+      "max_words": 2000,
+      "remarks": "We're looking especially for nearer-future fiction; think a bit more along the lines of sentient chat bots or climate-changed dystopias and less far-flung alien space opera"
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 15,
+    "fields": {
+      "publisher": "Escape Pod",
+      "web_address": "http://escapepod.org/guidelines/",
+      "min_words": 2000,
+      "max_words": 6000,
+      "remarks": "We are fairly flexible on what counts as “science” (as we’ll delve into superheroes or steampunk on occasion) and are interested in exploring the range of the genre, but we are not looking for fantasy, magical realism, or more than a tinge of horror.  If your story isn’t centered on science, technology, future projections, alternate history, and how any or all of these things intersect with people, we’re probably not the right market for it."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 16,
+    "fields": {
+      "publisher": "Ellery Queen Mystery Magazine",
+      "web_address": "https://www.themysteryplace.com/eqmm/guidelines/",
+      "min_words": 250,
+      "max_words": 8000,
+      "remarks": "EQMM uses stories of almost every length. 2,500-8,000 words is the preferred range, but we occasionally use stories of up to 12,000 words and we feature one or two short novels (up to 20,000 words) each year, although these spaces are usually reserved for established writers. Shorter stories are also considered, including minute mysteries of as little as 250 words. Our rates for original stories are from 5 to 8 ¢ a word, sometimes higher for established authors."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 17,
+    "fields": {
+      "publisher": "Eric Miller",
+      "web_address": "raging@earthlink.net",
+      "min_words": 2500,
+      "max_words": 5000,
+      "remarks": "For a book to be titled 18 Wheels of Science Fiction"
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 18,
+    "fields": {
+      "publisher": "Allan Kaster",
+      "web_address": "http://www.audiotexttapes.net/",
+      "min_words": null,
+      "max_words": null,
+      "remarks": "atxtapes@gmail.comsold Chatter of Monkeys"
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 24,
+    "fields": {
+      "publisher": "PPPPPPPP",
+      "web_address": null,
+      "min_words": null,
+      "max_words": null,
+      "remarks": ""
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 25,
+    "fields": {
+      "publisher": "A URL Publisher",
+      "web_address": "http://www.google.com",
+      "min_words": null,
+      "max_words": null,
+      "remarks": ""
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can add disposition",
+      "content_type": 7,
+      "codename": "add_disposition"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can change disposition",
+      "content_type": 7,
+      "codename": "change_disposition"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can delete disposition",
+      "content_type": 7,
+      "codename": "delete_disposition"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can add publisher",
+      "content_type": 8,
+      "codename": "add_publisher"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can change publisher",
+      "content_type": 8,
+      "codename": "change_publisher"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can delete publisher",
+      "content_type": 8,
+      "codename": "delete_publisher"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add submission",
+      "content_type": 9,
+      "codename": "add_submission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change submission",
+      "content_type": 9,
+      "codename": "change_submission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete submission",
+      "content_type": 9,
+      "codename": "delete_submission"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$Y9pCelGY3xVC$IQOBrYTk5+7FOBBuDURaN0iiWW/RWlTUczKNjj4G9Rc=",
+      "last_login": "2018-11-10T22:46:40.105Z",
+      "is_superuser": true,
+      "username": "bond",
+      "first_name": "Bond",
+      "last_name": "Elam",
+      "email": "bond@elam.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-09-27T18:53:55Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$pKCqe3HoUNEi$+0etaqgf2eHdZlSRpJScOcahlazlEi4rTPjVSRVrsLI=",
+      "last_login": "2018-11-08T19:13:45.364Z",
+      "is_superuser": false,
+      "username": "mark",
+      "first_name": "Mark",
+      "last_name": "Twain",
+      "email": "mark@twain.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-28T19:21:04Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$xJ2Wqp1WX5Tm$0l1TzeH3H0vu18k8GgGGmgb+os8LtA8zOk3b+j9CxXw=",
+      "last_login": "2018-10-31T17:44:28.491Z",
+      "is_superuser": false,
+      "username": "henry",
+      "first_name": "Henry",
+      "last_name": "James",
+      "email": "henry@james.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-10-30T13:39:13.338Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$c9KP6ztDQJZD$GzSXwsOZfmuJ46HC3f5OjWuoiZw2/UISY5QmfWSr6YM=",
+      "last_login": "2018-11-01T13:37:14.096Z",
+      "is_superuser": false,
+      "username": "tom",
+      "first_name": "Tom",
+      "last_name": "Jones",
+      "email": "tom@jones.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-10-31T17:51:20.444Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$Llt62ZvjLXuD$flEGdQeIsaFMtEKityVcgCUzcOA/ftKZ0nIPrqJ18Uo=",
+      "last_login": "2018-11-01T13:39:28.398Z",
+      "is_superuser": false,
+      "username": "mary",
+      "first_name": "Mary",
+      "last_name": "Smith",
+      "email": "mary@smith.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-11-01T13:39:01.527Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 1,
+    "fields": {
+      "story": "El Pajaro",
+      "word_count": null,
+      "file": "pajaro.010",
+      "date_submitted": "1998-08-08",
+      "disposition_date": "1998-08-08",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 2,
+    "fields": {
+      "story": "Birds of Prey",
+      "word_count": null,
+      "file": "colony.010",
+      "date_submitted": "1999-06-29",
+      "disposition_date": "1999-06-29",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 3,
+    "fields": {
+      "story": "El Pajaro",
+      "word_count": null,
+      "file": "pajaro.010",
+      "date_submitted": "1999-06-29",
+      "disposition_date": "1999-06-29",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 4,
+    "fields": {
+      "story": "Mariposa",
+      "word_count": null,
+      "file": "mariposa.010",
+      "date_submitted": "1999-06-29",
+      "disposition_date": "1999-06-29",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 5,
+    "fields": {
+      "story": "Birds of Prey",
+      "word_count": null,
+      "file": "colony.010",
+      "date_submitted": "1999-07-15",
+      "disposition_date": "1999-07-15",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 6,
+    "fields": {
+      "story": "El Pajaro",
+      "word_count": null,
+      "file": "pajaro.010",
+      "date_submitted": "1999-07-15",
+      "disposition_date": "1999-07-15",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 7,
+    "fields": {
+      "story": "Mariposa",
+      "word_count": null,
+      "file": "mariposa.010",
+      "date_submitted": "1999-07-15",
+      "disposition_date": "1999-07-15",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 8,
+    "fields": {
+      "story": "Practical Application",
+      "word_count": null,
+      "file": "gabriela.010",
+      "date_submitted": "1999-08-30",
+      "disposition_date": "1999-08-30",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 9,
+    "fields": {
+      "story": "Birds of Prey",
+      "word_count": null,
+      "file": "colony.010",
+      "date_submitted": "1999-09-03",
+      "disposition_date": "1999-09-03",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 10,
+    "fields": {
+      "story": "Mariposa",
+      "word_count": null,
+      "file": "mariposa.010",
+      "date_submitted": "1999-09-03",
+      "disposition_date": "1999-09-03",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 11,
+    "fields": {
+      "story": "Practical Application",
+      "word_count": null,
+      "file": "gabriela.010",
+      "date_submitted": "1999-09-30",
+      "disposition_date": "1999-09-30",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 12,
+    "fields": {
+      "story": "Calamari Connection",
+      "word_count": null,
+      "file": "spider.030.doc",
+      "date_submitted": "1999-10-05",
+      "disposition_date": "1999-10-05",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 13,
+    "fields": {
+      "story": "Calamari Connection",
+      "word_count": null,
+      "file": "spider.030.doc",
+      "date_submitted": "2000-03-01",
+      "disposition_date": "2000-03-01",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 14,
+    "fields": {
+      "story": "Leap of Faith",
+      "word_count": null,
+      "file": "yellow.040.doc",
+      "date_submitted": "2000-03-10",
+      "disposition_date": "2000-03-10",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 15,
+    "fields": {
+      "story": "Leap of Faith",
+      "word_count": null,
+      "file": "yellow.040.doc",
+      "date_submitted": "2000-03-21",
+      "disposition_date": "2000-03-21",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 16,
+    "fields": {
+      "story": "The Creator's Image",
+      "word_count": null,
+      "file": "Creator.030.doc",
+      "date_submitted": "2000-08-18",
+      "disposition_date": "2000-08-18",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 17,
+    "fields": {
+      "story": "The Creator's Image",
+      "word_count": null,
+      "file": "Creator.030.doc",
+      "date_submitted": "2000-09-06",
+      "disposition_date": "2000-09-06",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 18,
+    "fields": {
+      "story": "My Blue Gnu",
+      "word_count": null,
+      "file": "Wildebeest.28.doc",
+      "date_submitted": "2000-11-30",
+      "disposition_date": "2000-11-30",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 19,
+    "fields": {
+      "story": "The Perils of Precision",
+      "word_count": null,
+      "file": "TimeMachine.030.doc",
+      "date_submitted": "2000-12-11",
+      "disposition_date": "2000-12-11",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 20,
+    "fields": {
+      "story": "The Tabby Factor",
+      "word_count": null,
+      "file": "AlienVotes.070.doc",
+      "date_submitted": "2001-01-05",
+      "disposition_date": "2001-01-05",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 21,
+    "fields": {
+      "story": "It's Not Nice to Fool with Father Time",
+      "word_count": null,
+      "file": "LittleChanges.090.doc",
+      "date_submitted": "2001-01-23",
+      "disposition_date": "2001-01-23",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 22,
+    "fields": {
+      "story": "The Lady in White",
+      "word_count": null,
+      "file": "FamousArtist.070.doc",
+      "date_submitted": "2001-03-05",
+      "disposition_date": "2001-03-05",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 23,
+    "fields": {
+      "story": "It's Not Nice to Fool with Father Time",
+      "word_count": null,
+      "file": "LittleChanges.090.doc",
+      "date_submitted": "2001-03-05",
+      "disposition_date": "2001-03-05",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 24,
+    "fields": {
+      "story": "The Perils of Precision",
+      "word_count": null,
+      "file": "TimeMachine.030.doc",
+      "date_submitted": "2001-03-05",
+      "disposition_date": "2001-03-05",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 25,
+    "fields": {
+      "story": "The Tabby Factor",
+      "word_count": null,
+      "file": "AlienVotes.070.doc",
+      "date_submitted": "2001-03-19",
+      "disposition_date": "2001-03-19",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 26,
+    "fields": {
+      "story": "The Piper's Dream",
+      "word_count": null,
+      "file": "Blink.120.doc",
+      "date_submitted": "2001-05-02",
+      "disposition_date": "2001-05-02",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 27,
+    "fields": {
+      "story": "The Piper's Dream",
+      "word_count": null,
+      "file": "Blink.130.doc",
+      "date_submitted": "2001-05-09",
+      "disposition_date": "2001-05-09",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 28,
+    "fields": {
+      "story": "The Lady in White",
+      "word_count": null,
+      "file": "FamousArtist.080.doc",
+      "date_submitted": "2001-05-12",
+      "disposition_date": "2001-05-12",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 29,
+    "fields": {
+      "story": "My Blue Gnu",
+      "word_count": null,
+      "file": "Wildebeest.30.doc",
+      "date_submitted": "2001-07-16",
+      "disposition_date": "2001-07-16",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 31,
+    "fields": {
+      "story": "A Bolt From the Blue",
+      "word_count": null,
+      "file": "SupplyDemand.09.doc",
+      "date_submitted": "2002-01-30",
+      "disposition_date": "2002-01-30",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 32,
+    "fields": {
+      "story": "The Piper's Dream",
+      "word_count": null,
+      "file": "Blink.140.doc",
+      "date_submitted": "2002-03-13",
+      "disposition_date": "2002-03-13",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 33,
+    "fields": {
+      "story": "Verba Verde",
+      "word_count": null,
+      "file": "SupplyDemand.10.doc",
+      "date_submitted": "2002-03-13",
+      "disposition_date": "2002-03-13",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 34,
+    "fields": {
+      "story": "Game of Life",
+      "word_count": null,
+      "file": "GameOfLife.33.doc",
+      "date_submitted": "2002-03-13",
+      "disposition_date": "2002-03-13",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 35,
+    "fields": {
+      "story": "All That Rises",
+      "word_count": null,
+      "file": "FutureDroid.36.doc",
+      "date_submitted": "2002-08-19",
+      "disposition_date": "2002-08-19",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 36,
+    "fields": {
+      "story": "All That Rises",
+      "word_count": null,
+      "file": "FutureDroid.37.doc",
+      "date_submitted": "2002-09-06",
+      "disposition_date": "2002-09-06",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 37,
+    "fields": {
+      "story": "The Perils of Poetic License",
+      "word_count": null,
+      "file": "TimeMachine.18.doc",
+      "date_submitted": "2002-09-06",
+      "disposition_date": "2002-09-06",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 38,
+    "fields": {
+      "story": "The Perils of Poetic License",
+      "word_count": null,
+      "file": "TimeMachine.18.doc",
+      "date_submitted": "2002-09-24",
+      "disposition_date": "2002-09-24",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 39,
+    "fields": {
+      "story": "Marshland Melodies",
+      "word_count": null,
+      "file": "Exploitation.11.doc",
+      "date_submitted": "2002-09-24",
+      "disposition_date": "2002-09-24",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 40,
+    "fields": {
+      "story": "A Familiar Story",
+      "word_count": null,
+      "file": "Mariposa.15.doc",
+      "date_submitted": "2002-10-26",
+      "disposition_date": "2002-10-26",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 41,
+    "fields": {
+      "story": "Marshland Melodies",
+      "word_count": null,
+      "file": "Exploitation.11.doc",
+      "date_submitted": "2002-10-28",
+      "disposition_date": "2002-10-28",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 42,
+    "fields": {
+      "story": "A Familiar Story",
+      "word_count": null,
+      "file": "Mariposa.16.doc",
+      "date_submitted": "2002-12-18",
+      "disposition_date": "2002-12-18",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 43,
+    "fields": {
+      "story": "When Might Meets Right",
+      "word_count": null,
+      "file": "FutureRivals.09.doc",
+      "date_submitted": "2002-12-18",
+      "disposition_date": "2002-12-18",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 44,
+    "fields": {
+      "story": "All That Rises",
+      "word_count": null,
+      "file": "FutureDroid.41.doc",
+      "date_submitted": "2002-12-23",
+      "disposition_date": "2002-12-23",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 45,
+    "fields": {
+      "story": "Marshland Melodies",
+      "word_count": null,
+      "file": "Exploitation.12.doc",
+      "date_submitted": "2002-12-23",
+      "disposition_date": "2002-12-23",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 46,
+    "fields": {
+      "story": "When Might Meets Right",
+      "word_count": null,
+      "file": "FutureRivals.11.doc",
+      "date_submitted": "2003-01-10",
+      "disposition_date": "2003-01-10",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 47,
+    "fields": {
+      "story": "Contingent Liability",
+      "word_count": null,
+      "file": "Worry.09.doc",
+      "date_submitted": "2003-01-10",
+      "disposition_date": "2003-01-10",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 48,
+    "fields": {
+      "story": "Contingent Liability",
+      "word_count": null,
+      "file": "Worry.10.doc",
+      "date_submitted": "2003-01-21",
+      "disposition_date": "2003-01-21",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 49,
+    "fields": {
+      "story": "A Kiss from the Queen",
+      "word_count": null,
+      "file": "Dyslexia.33.doc",
+      "date_submitted": "2003-09-04",
+      "disposition_date": "2003-09-04",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 50,
+    "fields": {
+      "story": "A Kiss from the Queen",
+      "word_count": null,
+      "file": "Dyslexia.34.doc",
+      "date_submitted": "2003-09-18",
+      "disposition_date": "2003-09-18",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 51,
+    "fields": {
+      "story": "Keepers of the Quantum Foam",
+      "word_count": null,
+      "file": "Awakening.36.doc",
+      "date_submitted": "2003-09-24",
+      "disposition_date": "2003-09-24",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 52,
+    "fields": {
+      "story": "Keepers of the Quantum Foam",
+      "word_count": null,
+      "file": "Awakening.37.doc",
+      "date_submitted": "2003-09-30",
+      "disposition_date": "2003-09-30",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 53,
+    "fields": {
+      "story": "A Kiss from the Queen",
+      "word_count": null,
+      "file": "Dyslexia.35.doc",
+      "date_submitted": "2004-01-05",
+      "disposition_date": "2004-01-05",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 54,
+    "fields": {
+      "story": "Keepers of the Quantum Foam",
+      "word_count": null,
+      "file": "Awakening.39.doc",
+      "date_submitted": "2004-02-02",
+      "disposition_date": "2004-02-02",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 55,
+    "fields": {
+      "story": "Remembrance of Things to Come",
+      "word_count": null,
+      "file": "NecessaryMortality.29.doc",
+      "date_submitted": "2004-02-02",
+      "disposition_date": "2004-02-02",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 56,
+    "fields": {
+      "story": "Remembrance of Things to Come",
+      "word_count": null,
+      "file": "NecessaryMortality.30.doc",
+      "date_submitted": "2004-02-11",
+      "disposition_date": "2004-02-11",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 57,
+    "fields": {
+      "story": "Verba Verde",
+      "word_count": null,
+      "file": "Mirror.14.doc",
+      "date_submitted": "2004-02-17",
+      "disposition_date": "2004-02-17",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 58,
+    "fields": {
+      "story": "Verba Verde",
+      "word_count": null,
+      "file": "Mirror.15.doc",
+      "date_submitted": "2004-02-25",
+      "disposition_date": "2004-02-25",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 59,
+    "fields": {
+      "story": "The Honesty of Aldebarans",
+      "word_count": null,
+      "file": "TimeMachine.24.doc",
+      "date_submitted": "2004-03-02",
+      "disposition_date": "2004-03-02",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 60,
+    "fields": {
+      "story": "Remembrance of Things to Come",
+      "word_count": null,
+      "file": "NecessaryMortality.30.doc",
+      "date_submitted": "2004-03-11",
+      "disposition_date": "2004-03-11",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 61,
+    "fields": {
+      "story": "The Book of Mildred",
+      "word_count": null,
+      "file": "FieldsOfLord.37.doc",
+      "date_submitted": "2004-06-24",
+      "disposition_date": "2004-06-24",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 62,
+    "fields": {
+      "story": "The Honesty of Aldebarans",
+      "word_count": null,
+      "file": "TimeMachine.28.doc",
+      "date_submitted": "2004-06-30",
+      "disposition_date": "2004-06-30",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 63,
+    "fields": {
+      "story": "The Honesty of Aldebarans",
+      "word_count": null,
+      "file": "TimeMachine.30.doc",
+      "date_submitted": "2004-07-29",
+      "disposition_date": "2004-07-29",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 64,
+    "fields": {
+      "story": "Objects in the Mirror May Not Be There at All",
+      "word_count": null,
+      "file": "Perturbation.21.doc.",
+      "date_submitted": "2004-07-29",
+      "disposition_date": "2004-07-29",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 65,
+    "fields": {
+      "story": "The Book of Mildred",
+      "word_count": null,
+      "file": "FieldsOfLord.38.doc",
+      "date_submitted": "2004-07-30",
+      "disposition_date": "2004-07-30",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 66,
+    "fields": {
+      "story": "The Big Reboot",
+      "word_count": null,
+      "file": "Perturbation.27.doc",
+      "date_submitted": "2004-08-18",
+      "disposition_date": "2004-08-18",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 67,
+    "fields": {
+      "story": "The Many Names of Technology",
+      "word_count": null,
+      "file": "Worry.19.doc",
+      "date_submitted": "2004-09-07",
+      "disposition_date": "2004-09-07",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 68,
+    "fields": {
+      "story": "The Eighth Deadly Sin",
+      "word_count": null,
+      "file": "Dopamine.35.doc",
+      "date_submitted": "2005-03-03",
+      "disposition_date": "2005-03-03",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 69,
+    "fields": {
+      "story": "The Big Reboot",
+      "word_count": null,
+      "file": "Perturbation.28.doc",
+      "date_submitted": "2005-03-07",
+      "disposition_date": "2005-03-07",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 70,
+    "fields": {
+      "story": "A Matter of Perception",
+      "word_count": null,
+      "file": "Worry.30.doc",
+      "date_submitted": "2005-03-29",
+      "disposition_date": "2005-03-29",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 71,
+    "fields": {
+      "story": "The Eighth Deadly Sin",
+      "word_count": null,
+      "file": "Dopamine.36.doc",
+      "date_submitted": "2005-03-30",
+      "disposition_date": "2005-03-30",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 72,
+    "fields": {
+      "story": "A Kiss from the Queen",
+      "word_count": null,
+      "file": "Dyslexia.39.doc",
+      "date_submitted": "2005-04-28",
+      "disposition_date": "2005-04-28",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 73,
+    "fields": {
+      "story": "A Kiss from the Queen",
+      "word_count": null,
+      "file": "Dyslexia.40.doc",
+      "date_submitted": "2005-05-11",
+      "disposition_date": "2005-05-11",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 74,
+    "fields": {
+      "story": "The Blue-Eyed Brunette",
+      "word_count": null,
+      "file": "KillingGramps.22.doc",
+      "date_submitted": "2005-05-23",
+      "disposition_date": "2005-05-23",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 75,
+    "fields": {
+      "story": "A Matter of Perception",
+      "word_count": null,
+      "file": "Worry.34.doc",
+      "date_submitted": "2005-05-25",
+      "disposition_date": "2005-05-25",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 76,
+    "fields": {
+      "story": "The Eighth Deadly Sin",
+      "word_count": null,
+      "file": "Dopamine.37.doc",
+      "date_submitted": "2005-05-25",
+      "disposition_date": "2005-05-25",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 77,
+    "fields": {
+      "story": "The Book of Mildred",
+      "word_count": null,
+      "file": "FieldsOfLord.42.doc",
+      "date_submitted": "2005-06-01",
+      "disposition_date": "2005-06-01",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 78,
+    "fields": {
+      "story": "The Case of the Blue-Eyed Brunette",
+      "word_count": null,
+      "file": "KillingGramps.23.doc",
+      "date_submitted": "2005-06-03",
+      "disposition_date": "2005-06-03",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 79,
+    "fields": {
+      "story": "The Book of Mildred",
+      "word_count": null,
+      "file": "FieldsOfLord.43.doc",
+      "date_submitted": "2005-06-14",
+      "disposition_date": "2005-06-14",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 80,
+    "fields": {
+      "story": "Design Defect",
+      "word_count": null,
+      "file": "Hominid.16.doc",
+      "date_submitted": "2005-07-08",
+      "disposition_date": "2005-07-08",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 81,
+    "fields": {
+      "story": "A Kiss from the Queen",
+      "word_count": null,
+      "file": "Dyslexia.41.doc",
+      "date_submitted": "2005-07-11",
+      "disposition_date": "2005-07-11",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 82,
+    "fields": {
+      "story": "The Book of Mildred",
+      "word_count": null,
+      "file": "FieldsOfLord.44.doc",
+      "date_submitted": "2005-07-11",
+      "disposition_date": "2005-07-11",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 83,
+    "fields": {
+      "story": "The Eighth Deadly Sin",
+      "word_count": null,
+      "file": "Dopamine.42.doc",
+      "date_submitted": "2005-07-20",
+      "disposition_date": "2005-07-20",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 84,
+    "fields": {
+      "story": "The Piper's Dream",
+      "word_count": null,
+      "file": "BlinkAgain.30.doc",
+      "date_submitted": "2005-07-24",
+      "disposition_date": "2005-07-24",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 85,
+    "fields": {
+      "story": "Design Defect",
+      "word_count": null,
+      "file": "Hominid.17.doc",
+      "date_submitted": "2005-08-02",
+      "disposition_date": "2005-08-02",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 86,
+    "fields": {
+      "story": "Design Defect",
+      "word_count": null,
+      "file": "Hominid.18.doc ",
+      "date_submitted": "2005-11-03",
+      "disposition_date": "2005-11-03",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 87,
+    "fields": {
+      "story": "Deus Ex Machina",
+      "word_count": null,
+      "file": "Evolution.34.doc",
+      "date_submitted": "2005-11-03",
+      "disposition_date": "2005-11-03",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 88,
+    "fields": {
+      "story": "Deus Ex Machina",
+      "word_count": null,
+      "file": "Evolution.35.doc",
+      "date_submitted": "2005-11-18",
+      "disposition_date": "2005-11-18",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 89,
+    "fields": {
+      "story": "Life Everlasting",
+      "word_count": null,
+      "file": "LifeEverlasting.38.doc",
+      "date_submitted": "2006-01-06",
+      "disposition_date": "2006-01-06",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 90,
+    "fields": {
+      "story": "Deus Ex Machina",
+      "word_count": null,
+      "file": "Evolution.35.doc",
+      "date_submitted": "2006-02-02",
+      "disposition_date": "2006-02-02",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 91,
+    "fields": {
+      "story": "Life Everlasting",
+      "word_count": null,
+      "file": "LifeEverlasting.39.doc",
+      "date_submitted": "2006-02-08",
+      "disposition_date": "2006-02-08",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 92,
+    "fields": {
+      "story": "Loose Ends",
+      "word_count": null,
+      "file": "TippingPoint.24.doc",
+      "date_submitted": "2006-03-02",
+      "disposition_date": "2006-03-02",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 93,
+    "fields": {
+      "story": "Loose Ends",
+      "word_count": null,
+      "file": "TippingPoint.25.doc",
+      "date_submitted": "2006-03-17",
+      "disposition_date": "2006-03-17",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 94,
+    "fields": {
+      "story": "Loose Ends",
+      "word_count": null,
+      "file": "TippingPoint.25.doc",
+      "date_submitted": "2006-04-21",
+      "disposition_date": "2006-04-21",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 95,
+    "fields": {
+      "story": "Cat Box Capers",
+      "word_count": null,
+      "file": "Schrodinger.22.doc",
+      "date_submitted": "2006-04-21",
+      "disposition_date": "2006-04-21",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 96,
+    "fields": {
+      "story": "The Lessons of History",
+      "word_count": null,
+      "file": "Columbus.20.doc",
+      "date_submitted": "2006-05-10",
+      "disposition_date": "2006-05-10",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 97,
+    "fields": {
+      "story": "Cat Box Capers",
+      "word_count": null,
+      "file": "Schrodinger.23.doc",
+      "date_submitted": "2006-05-11",
+      "disposition_date": "2006-05-11",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 98,
+    "fields": {
+      "story": "Life Everlasting",
+      "word_count": null,
+      "file": "LifeEverlasting.40.doc",
+      "date_submitted": "2006-05-17",
+      "disposition_date": "2006-05-17",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 99,
+    "fields": {
+      "story": "The Lessons of History",
+      "word_count": null,
+      "file": "Columbus.22.doc",
+      "date_submitted": "2006-05-23",
+      "disposition_date": "2006-05-23",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 100,
+    "fields": {
+      "story": "War Dogs",
+      "word_count": null,
+      "file": "Chromosomes.20.doc",
+      "date_submitted": "2006-09-06",
+      "disposition_date": "2006-09-06",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 101,
+    "fields": {
+      "story": "The Other Problem with Time Travel",
+      "word_count": null,
+      "file": "NewTimeMachine.22.doc",
+      "date_submitted": "2006-09-23",
+      "disposition_date": "2006-09-23",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 102,
+    "fields": {
+      "story": "Patent Pending",
+      "word_count": null,
+      "file": "MyGenes.15.doc",
+      "date_submitted": "2006-10-19",
+      "disposition_date": "2006-10-19",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 103,
+    "fields": {
+      "story": "Evolution",
+      "word_count": null,
+      "file": "FutureBots.40.doc",
+      "date_submitted": "2007-03-13",
+      "disposition_date": "2007-03-13",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 104,
+    "fields": {
+      "story": "The Lessons of History",
+      "word_count": null,
+      "file": "Columbus.24.doc",
+      "date_submitted": "2007-03-19",
+      "disposition_date": "2007-03-19",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 105,
+    "fields": {
+      "story": "War Dogs",
+      "word_count": null,
+      "file": "Chromosomes.21.doc",
+      "date_submitted": "2007-03-21",
+      "disposition_date": "2007-03-21",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 106,
+    "fields": {
+      "story": "War Dogs",
+      "word_count": null,
+      "file": "Chromosomes.21.doc",
+      "date_submitted": "2007-04-02",
+      "disposition_date": "2007-04-02",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 107,
+    "fields": {
+      "story": "Patent Pending",
+      "word_count": null,
+      "file": "MyGenes.20.doc",
+      "date_submitted": "2007-04-02",
+      "disposition_date": "2007-04-02",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 108,
+    "fields": {
+      "story": "Tangle",
+      "word_count": null,
+      "file": "SecondChance.34.doc",
+      "date_submitted": "2007-08-01",
+      "disposition_date": "2007-08-01",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 109,
+    "fields": {
+      "story": "Patent Pending",
+      "word_count": null,
+      "file": "MyGenes.20.doc",
+      "date_submitted": "2007-08-21",
+      "disposition_date": "2007-08-21",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 110,
+    "fields": {
+      "story": "A Plethora of Truth",
+      "word_count": null,
+      "file": "SoulGene.18.doc",
+      "date_submitted": "2007-08-21",
+      "disposition_date": "2007-08-21",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 111,
+    "fields": {
+      "story": "A Plethora of Truth",
+      "word_count": null,
+      "file": "SoulGene.20.doc",
+      "date_submitted": "2007-08-30",
+      "disposition_date": "2007-08-30",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 112,
+    "fields": {
+      "story": "The Emperor's Moon",
+      "word_count": null,
+      "file": "DinoDemise.32.doc",
+      "date_submitted": "2008-01-14",
+      "disposition_date": "2008-01-14",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 113,
+    "fields": {
+      "story": "Keepers of the Quantum Foam",
+      "word_count": null,
+      "file": "Awakening.50.doc",
+      "date_submitted": "2008-01-31",
+      "disposition_date": "2008-01-31",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 114,
+    "fields": {
+      "story": "The Case of the Disconnected Wife",
+      "word_count": null,
+      "file": "HouseOfCards.30.doc",
+      "date_submitted": "2008-05-13",
+      "disposition_date": "2008-05-13",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 115,
+    "fields": {
+      "story": "Quark Soup",
+      "word_count": null,
+      "file": "Reboot.19.doc",
+      "date_submitted": "2008-05-25",
+      "disposition_date": "2008-05-25",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 116,
+    "fields": {
+      "story": "The Other Problem with Time Travel",
+      "word_count": 1000,
+      "file": "NewTimeMachine.24.doc",
+      "date_submitted": "2008-05-28",
+      "disposition_date": "2008-05-28",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 117,
+    "fields": {
+      "story": "Evolution",
+      "word_count": null,
+      "file": "FutureBots.41.doc",
+      "date_submitted": "2008-05-28",
+      "disposition_date": "2008-05-28",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 118,
+    "fields": {
+      "story": "The Anunnaki's Legacy",
+      "word_count": null,
+      "file": "Blame.40.docx",
+      "date_submitted": "2009-01-15",
+      "disposition_date": "2009-01-15",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 119,
+    "fields": {
+      "story": "Quark Soup",
+      "word_count": null,
+      "file": "Reboot.35.docx",
+      "date_submitted": "2009-02-09",
+      "disposition_date": "2009-02-09",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 120,
+    "fields": {
+      "story": "The Anunnaki Legacy",
+      "word_count": null,
+      "file": "Blame.48.docx",
+      "date_submitted": "2009-06-07",
+      "disposition_date": "2009-06-07",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 121,
+    "fields": {
+      "story": "The Little Bang Theory",
+      "word_count": null,
+      "file": "TimeTheory.20.docx",
+      "date_submitted": "2009-07-21",
+      "disposition_date": "2009-07-21",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 122,
+    "fields": {
+      "story": "The Anunnaki Legacy",
+      "word_count": null,
+      "file": "Blame.54.docx",
+      "date_submitted": "2009-08-07",
+      "disposition_date": "2009-08-07",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 123,
+    "fields": {
+      "story": "Entitlement",
+      "word_count": null,
+      "file": "ImmortalityInc.40.docx",
+      "date_submitted": "2010-01-23",
+      "disposition_date": "2010-01-23",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 124,
+    "fields": {
+      "story": "Blind Spot",
+      "word_count": null,
+      "file": "Memories.40.docx",
+      "date_submitted": "2010-06-08",
+      "disposition_date": "2010-06-08",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 125,
+    "fields": {
+      "story": "Life Everlasting",
+      "word_count": null,
+      "file": "MoreImmortal.46.docx",
+      "date_submitted": "2011-01-06",
+      "disposition_date": "2011-01-06",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 126,
+    "fields": {
+      "story": "Instinctive Response",
+      "word_count": null,
+      "file": "SanityVirus.43.docx",
+      "date_submitted": "2012-01-26",
+      "disposition_date": "2012-01-26",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 127,
+    "fields": {
+      "story": "Instinctive Response",
+      "word_count": null,
+      "file": "SanityVirus.48.docx",
+      "date_submitted": "2012-03-18",
+      "disposition_date": "2012-03-18",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 128,
+    "fields": {
+      "story": "Bag of Bones",
+      "word_count": null,
+      "file": "Inevitability.64.docx",
+      "date_submitted": "2012-09-17",
+      "disposition_date": "2012-09-17",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 129,
+    "fields": {
+      "story": "Smartphones",
+      "word_count": null,
+      "file": "Extension.10.docx",
+      "date_submitted": "2012-10-07",
+      "disposition_date": "2012-10-07",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 130,
+    "fields": {
+      "story": "Flying by Wire",
+      "word_count": null,
+      "file": "FermiBot.17.docx",
+      "date_submitted": "2013-01-13",
+      "disposition_date": "2013-01-13",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 131,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": null,
+      "file": "FingerPrints.28.docx",
+      "date_submitted": "2013-05-25",
+      "disposition_date": "2013-05-25",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 132,
+    "fields": {
+      "story": "Unconditional Love",
+      "word_count": null,
+      "file": "Adjustment.19.docx",
+      "date_submitted": "2013-12-01",
+      "disposition_date": "2013-12-01",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 133,
+    "fields": {
+      "story": "The Eighth Iteration",
+      "word_count": null,
+      "file": "RobotRebirth.51.docx",
+      "date_submitted": "2014-02-12",
+      "disposition_date": "2014-02-12",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 134,
+    "fields": {
+      "story": "A Switch in Time",
+      "word_count": null,
+      "file": "Congruence.30.docx",
+      "date_submitted": "2014-06-09",
+      "disposition_date": "2014-06-09",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 135,
+    "fields": {
+      "story": "Dreams of Spanish Gold",
+      "word_count": null,
+      "file": "Mariposa.33.docx",
+      "date_submitted": "2014-06-27",
+      "disposition_date": "2014-06-27",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 136,
+    "fields": {
+      "story": "Old Bones",
+      "word_count": null,
+      "file": "Inevitability.75.docx",
+      "date_submitted": "2014-07-18",
+      "disposition_date": "2014-07-18",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 137,
+    "fields": {
+      "story": "Dreams of Spanish Gold",
+      "word_count": null,
+      "file": "Mariposa.34.docx",
+      "date_submitted": "2014-07-23",
+      "disposition_date": "2014-07-23",
+      "publisher": 5,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 138,
+    "fields": {
+      "story": "Tracks in Time",
+      "word_count": null,
+      "file": "Congruence.39.docx",
+      "date_submitted": "2014-08-15",
+      "disposition_date": "2014-08-15",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 139,
+    "fields": {
+      "story": "Dreams of Spanish Gold",
+      "word_count": null,
+      "file": "Mariposa.33.docx",
+      "date_submitted": "2014-08-15",
+      "disposition_date": "2014-08-15",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 140,
+    "fields": {
+      "story": "Dreams of Spanish Gold",
+      "word_count": null,
+      "file": "Mariposa.34.docx ",
+      "date_submitted": "2014-08-17",
+      "disposition_date": "2014-08-17",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 141,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": null,
+      "file": "FingerPrints.41.docx",
+      "date_submitted": "2014-09-10",
+      "disposition_date": "2014-09-10",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 142,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": null,
+      "file": "FingerPrints.42.docx",
+      "date_submitted": "2014-10-28",
+      "disposition_date": "2014-10-28",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 143,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": null,
+      "file": "FingerPrints.41.docx",
+      "date_submitted": "2014-10-31",
+      "disposition_date": "2014-10-31",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 144,
+    "fields": {
+      "story": "Old Bones",
+      "word_count": 7700,
+      "file": "Inevitability.76.docx",
+      "date_submitted": "2014-11-01",
+      "disposition_date": "2014-11-01",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 145,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": null,
+      "file": "FingerPrints.42.docx",
+      "date_submitted": "2014-12-25",
+      "disposition_date": "2014-12-25",
+      "publisher": 7,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 146,
+    "fields": {
+      "story": "Entangled Lives",
+      "word_count": null,
+      "file": "ShipGoesHuman.36.docx",
+      "date_submitted": "2014-12-31",
+      "disposition_date": "2016-02-01",
+      "publisher": 1,
+      "disposition": 6,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 147,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": null,
+      "file": "FingerPrints.42.docx",
+      "date_submitted": "2015-01-04",
+      "disposition_date": "2015-01-04",
+      "publisher": 8,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 148,
+    "fields": {
+      "story": "Heads in the Cloud",
+      "word_count": null,
+      "file": "Consciousness.18.docx",
+      "date_submitted": "2015-02-18",
+      "disposition_date": "2015-02-18",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 149,
+    "fields": {
+      "story": "Pinch Points",
+      "word_count": null,
+      "file": "Congruence.58.docx",
+      "date_submitted": "2015-04-14",
+      "disposition_date": "2015-04-14",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 151,
+    "fields": {
+      "story": "Pinch Points",
+      "word_count": null,
+      "file": "Congruence.58.docx",
+      "date_submitted": "2015-05-05",
+      "disposition_date": "2015-05-05",
+      "publisher": 7,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 152,
+    "fields": {
+      "story": "Heads in the Cloud",
+      "word_count": null,
+      "file": "Consciousness.29.docx",
+      "date_submitted": "2015-05-06",
+      "disposition_date": "2015-05-06",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 153,
+    "fields": {
+      "story": "Pinch Points",
+      "word_count": null,
+      "file": "Congruence.58.docx",
+      "date_submitted": "2015-05-07",
+      "disposition_date": "2015-05-07",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 154,
+    "fields": {
+      "story": "The Chatter of Monkeys",
+      "word_count": null,
+      "file": "SafeWorld.32.doc",
+      "date_submitted": "2015-11-18",
+      "disposition_date": "2015-11-18",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 155,
+    "fields": {
+      "story": "The Chatter of Monkeys",
+      "word_count": 6700,
+      "file": "SafeWorld.32.doc",
+      "date_submitted": "2015-11-20",
+      "disposition_date": "2015-11-20",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 156,
+    "fields": {
+      "story": "Persistence of Illusion",
+      "word_count": 6700,
+      "file": "FingerPrints.42.docx",
+      "date_submitted": "2015-11-21",
+      "disposition_date": "2015-11-21",
+      "publisher": 5,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 157,
+    "fields": {
+      "story": "Deus ex Machina",
+      "word_count": 2800,
+      "file": "Evolution.37.docx",
+      "date_submitted": "2015-12-01",
+      "disposition_date": "2015-12-01",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 159,
+    "fields": {
+      "story": "El Pajaro",
+      "word_count": 6700,
+      "file": "Pajaro.040.docx",
+      "date_submitted": "2015-12-03",
+      "disposition_date": "2015-12-03",
+      "publisher": 2,
+      "disposition": 5,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 161,
+    "fields": {
+      "story": "Snake in the Grass",
+      "word_count": 900,
+      "file": "Snake.26.docx",
+      "date_submitted": "2016-01-02",
+      "disposition_date": "2016-01-02",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 163,
+    "fields": {
+      "story": "Snake in the Grass",
+      "word_count": 900,
+      "file": "Snake.29.docx",
+      "date_submitted": "2016-01-08",
+      "disposition_date": "2016-01-08",
+      "publisher": 4,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 167,
+    "fields": {
+      "story": "Heads in the Cloud",
+      "word_count": 6700,
+      "file": "Consciousness.30.docx",
+      "date_submitted": "2016-01-25",
+      "disposition_date": "2016-02-12",
+      "publisher": 7,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 168,
+    "fields": {
+      "story": "The Lessons of History",
+      "word_count": 2100,
+      "file": "ColumbusAgain.04.docx",
+      "date_submitted": "2016-02-08",
+      "disposition_date": "2016-02-10",
+      "publisher": 2,
+      "disposition": 5,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 169,
+    "fields": {
+      "story": "The Chatter of Monkeys",
+      "word_count": 5900,
+      "file": "SafeWorld.42.docx",
+      "date_submitted": "2016-02-08",
+      "disposition_date": "2016-07-14",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 174,
+    "fields": {
+      "story": "A Safer World",
+      "word_count": 900,
+      "file": "FixerUppers.13.docx",
+      "date_submitted": "2015-11-30",
+      "disposition_date": "2001-11-30",
+      "publisher": 4,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 175,
+    "fields": {
+      "story": "Sanctuary",
+      "word_count": 6200,
+      "file": "JurassicBot.28.docx",
+      "date_submitted": "2016-07-05",
+      "disposition_date": "2016-07-08",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 176,
+    "fields": {
+      "story": "Sanctuary",
+      "word_count": 7200,
+      "file": "JurassicBot.41.docx",
+      "date_submitted": "2016-09-19",
+      "disposition_date": "2016-09-20",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 178,
+    "fields": {
+      "story": "Theater of the Mind",
+      "word_count": 4600,
+      "file": "cube.33.docx",
+      "date_submitted": "2016-12-23",
+      "disposition_date": "2016-12-29",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 180,
+    "fields": {
+      "story": "Sanctuary (as Theater)",
+      "word_count": 7400,
+      "file": "JurassicBot.45.docx",
+      "date_submitted": "2017-01-21",
+      "disposition_date": "2016-01-27",
+      "publisher": 7,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 182,
+    "fields": {
+      "story": "A Minor Miscalculation",
+      "word_count": 844,
+      "file": "NewTimeMachine.26.docx",
+      "date_submitted": "2017-01-21",
+      "disposition_date": "2017-02-03",
+      "publisher": 4,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 184,
+    "fields": {
+      "story": "Theater of the Mind",
+      "word_count": 4700,
+      "file": "cube.41.docx",
+      "date_submitted": "2017-03-05",
+      "disposition_date": "2017-03-06",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 185,
+    "fields": {
+      "story": "Theater of the Mind",
+      "word_count": 4700,
+      "file": "cube.41.docx",
+      "date_submitted": "2017-03-06",
+      "disposition_date": "2017-03-26",
+      "publisher": 5,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 186,
+    "fields": {
+      "story": "Sanctuary",
+      "word_count": 7400,
+      "file": "JurassicBot.46.docx",
+      "date_submitted": "2017-03-15",
+      "disposition_date": "2017-07-07",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 187,
+    "fields": {
+      "story": "Fine Euning",
+      "word_count": 992,
+      "file": "aviatrix.20.docx",
+      "date_submitted": "2017-04-23",
+      "disposition_date": "2017-05-13",
+      "publisher": 4,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 188,
+    "fields": {
+      "story": "Fine Tuning",
+      "word_count": 1000,
+      "file": "Aviatrix.21.docx",
+      "date_submitted": "2017-06-05",
+      "disposition_date": "2017-06-11",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 189,
+    "fields": {
+      "story": "El Pajaro",
+      "word_count": 6600,
+      "file": "Pajaro.042.docx",
+      "date_submitted": "2017-06-07",
+      "disposition_date": "2017-06-08",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 190,
+    "fields": {
+      "story": "Sanctuary",
+      "word_count": 4700,
+      "file": "JurassicBot.46.docx",
+      "date_submitted": "2017-07-11",
+      "disposition_date": "2018-02-26",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 191,
+    "fields": {
+      "story": "Theater of the Mind",
+      "word_count": 4700,
+      "file": "cube.41.docx",
+      "date_submitted": "2017-07-13",
+      "disposition_date": "2017-08-02",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 193,
+    "fields": {
+      "story": "Unmarked Bills",
+      "word_count": 6600,
+      "file": "DogDay.17.docx",
+      "date_submitted": "2017-09-05",
+      "disposition_date": null,
+      "publisher": 8,
+      "disposition": 4,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 194,
+    "fields": {
+      "story": "Fine Tuning",
+      "word_count": 1400,
+      "file": "Aviatrix.26.docx",
+      "date_submitted": "2017-09-15",
+      "disposition_date": "2017-09-16",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 195,
+    "fields": {
+      "story": "Fine Tuning",
+      "word_count": 1400,
+      "file": "Aviatrix.26.docx",
+      "date_submitted": "2017-09-16",
+      "disposition_date": "2017-10-31",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 196,
+    "fields": {
+      "story": "Voices from the Past",
+      "word_count": 4800,
+      "file": "BotHappy.60.docx",
+      "date_submitted": "2017-09-21",
+      "disposition_date": "2017-09-22",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 197,
+    "fields": {
+      "story": "Voices from the Past",
+      "word_count": 4200,
+      "file": "BotHappy.61.docx",
+      "date_submitted": "2017-09-25",
+      "disposition_date": "2017-09-26",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 199,
+    "fields": {
+      "story": "Fine Tuning",
+      "word_count": 1400,
+      "file": "Aviatrix.26.docx",
+      "date_submitted": "2017-11-25",
+      "disposition_date": "2018-02-26",
+      "publisher": 1,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 200,
+    "fields": {
+      "story": "Voices from the Past",
+      "word_count": 4200,
+      "file": "BotHappy.61.docx",
+      "date_submitted": "2017-11-25",
+      "disposition_date": "2018-02-12",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 202,
+    "fields": {
+      "story": "A Day in the Cloud",
+      "word_count": 6900,
+      "file": "Consciousness.42.docx",
+      "date_submitted": "2017-12-11",
+      "disposition_date": "2017-12-17",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 203,
+    "fields": {
+      "story": "A Day in the Cloud",
+      "word_count": 6900,
+      "file": "Consciousness.42.docx",
+      "date_submitted": "2018-01-19",
+      "disposition_date": "2018-01-20",
+      "publisher": 6,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 205,
+    "fields": {
+      "story": "In Reykjavik",
+      "word_count": 4800,
+      "file": "HarrysRibbon.16.docx",
+      "date_submitted": "2018-02-28",
+      "disposition_date": "2018-03-07",
+      "publisher": 2,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 206,
+    "fields": {
+      "story": "Voices from the Past",
+      "word_count": 4200,
+      "file": "BotHappy.61.docx",
+      "date_submitted": "2018-02-28",
+      "disposition_date": "2018-08-07",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 207,
+    "fields": {
+      "story": "A Day in the Cloud",
+      "word_count": 6900,
+      "file": "Consciousness.42.docx",
+      "date_submitted": "2018-02-28",
+      "disposition_date": "2018-03-01",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 209,
+    "fields": {
+      "story": "In Reykjavik",
+      "word_count": 4800,
+      "file": "HarrysRibbon.16.docx",
+      "date_submitted": "2018-03-14",
+      "disposition_date": "2018-03-24",
+      "publisher": 3,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 211,
+    "fields": {
+      "story": "In Reykjavik",
+      "word_count": 4600,
+      "file": "HarrysRibbon16.docx",
+      "date_submitted": "2018-04-21",
+      "disposition_date": "2018-07-06",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 212,
+    "fields": {
+      "story": "A Test Story",
+      "word_count": 2222,
+      "file": "FingerPrints.41.docx",
+      "date_submitted": "2018-10-06",
+      "disposition_date": null,
+      "publisher": 3,
+      "disposition": 3,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 213,
+    "fields": {
+      "story": "Yet another story",
+      "word_count": 11111,
+      "file": "ffffff",
+      "date_submitted": "2018-10-06",
+      "disposition_date": null,
+      "publisher": 25,
+      "disposition": 3,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 217,
+    "fields": {
+      "story": "A good Story",
+      "word_count": 1234,
+      "file": "good.docx",
+      "date_submitted": "2018-10-07",
+      "disposition_date": null,
+      "publisher": 9,
+      "disposition": 12,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 218,
+    "fields": {
+      "story": "A good Story",
+      "word_count": 1234,
+      "file": "very_good.docx",
+      "date_submitted": "2018-10-07",
+      "disposition_date": null,
+      "publisher": 9,
+      "disposition": 7,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 221,
+    "fields": {
+      "story": "Good Good Story",
+      "word_count": 10000,
+      "file": "good.docx",
+      "date_submitted": "2018-10-08",
+      "disposition_date": null,
+      "publisher": 1,
+      "disposition": 4,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 225,
+    "fields": {
+      "story": "Mark Twain Story #1",
+      "word_count": 21111,
+      "file": "mark.docx",
+      "date_submitted": "2018-10-16",
+      "disposition_date": null,
+      "publisher": 7,
+      "disposition": 7,
+      "user": 2
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 226,
+    "fields": {
+      "story": "Another Twain Story",
+      "word_count": 4000,
+      "file": "twainathome.docx",
+      "date_submitted": "2018-10-16",
+      "disposition_date": null,
+      "publisher": 9,
+      "disposition": 1,
+      "user": 2
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2018-09-27T19:32:43.064Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "1",
+      "object_repr": "bond",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"first_name\", \"last_name\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2018-09-28T19:21:04.580Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "mark",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2018-09-28T19:21:32.028Z",
+      "user": 1,
+      "content_type": 4,
+      "object_id": "2",
+      "object_repr": "mark",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"first_name\", \"last_name\", \"email\"]}}]"
+    }
+  }
+]
