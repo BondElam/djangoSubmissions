@@ -1,0 +1,35 @@
+[
+  {
+    "model": "submissions.publisher",
+    "pk": 1,
+    "fields": {
+      "publisher": "Analog",
+      "web_address": "http://www.analogsf.com/contact-us/writers-guidelines/",
+      "min_words": null,
+      "max_words": null,
+      "remarks": "Analog wants a strong science element."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 2,
+    "fields": {
+      "publisher": "F&SF",
+      "web_address": "https://www.sfsite.com/fsf/glines.htm",
+      "min_words": null,
+      "max_words": 25000,
+      "remarks": "F&SF has no formula for fiction. The speculative element may be slight, but it should be present."
+    }
+  },
+  {
+    "model": "submissions.publisher",
+    "pk": 3,
+    "fields": {
+      "publisher": "Azimov's",
+      "web_address": "http://www.asimovs.com/contact-us/writers-guidelines/",
+      "min_words": 1000,
+      "max_words": 20000,
+      "remarks": "Azimov's wants stories with some literary merit."
+    }
+  }
+]

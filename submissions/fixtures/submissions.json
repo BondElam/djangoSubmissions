@@ -1,0 +1,44 @@
+[
+  {
+    "model": "submissions.submission",
+    "pk": 1,
+    "fields": {
+      "story": "Story-0ne",
+      "word_count": 1000,
+      "file": "story-one.01.docx",
+      "date_submitted": "1998-08-08",
+      "disposition_date": "1998-08-08",
+      "publisher": 1,
+      "disposition": 1,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 2,
+    "fields": {
+      "story": "Story-Two",
+      "word_count": 2000,
+      "file": "story-one.02.docx",
+      "date_submitted": "1999-06-29",
+      "disposition_date": "1999-06-29",
+      "publisher": 2,
+      "disposition": 2,
+      "user": 1
+    }
+  },
+  {
+    "model": "submissions.submission",
+    "pk": 3,
+    "fields": {
+      "story": "Story-Three",
+      "word_count": 3000,
+      "file": "story-three.01.docx",
+      "date_submitted": "1999-06-29",
+      "disposition_date": "1999-06-29",
+      "publisher": 3,
+      "disposition": 3,
+      "user": 2
+    }
+  }
+]
