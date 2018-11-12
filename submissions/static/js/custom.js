@@ -89,7 +89,7 @@ $(document).ready(function(){
 			return false;
 		}
 
-		var wp_file = 'all';
+		var wp_file = '__all';
 		if(tbl.rowIndex >= 0){
 			$("#table-submissions tr").each(function(){
 				if($(this).index() === tbl.rowIndex){	

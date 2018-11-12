@@ -3,7 +3,7 @@
     "model": "submissions.submission",
     "pk": 1,
     "fields": {
-      "story": "Story-0ne",
+      "story": "Story-One",
       "word_count": 1000,
       "file": "story-one.01.docx",
       "date_submitted": "1998-08-08",

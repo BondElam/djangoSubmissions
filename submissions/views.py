@@ -240,7 +240,7 @@ class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
-    success_url = '/submissions/publishers/'
+    success_url = '/submissions/publishers?wp_file=__all'
 #     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
@@ -260,7 +260,7 @@ class PublisherUpdate(LoginRequiredMixin, UpdateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
-    success_url = '/submissions/publishers/'
+    success_url = '/submissions/publishers?wp_file=__all'
     
     def get_context_data(self, **kwargs):
         context = super(PublisherUpdate, self).get_context_data(**kwargs)

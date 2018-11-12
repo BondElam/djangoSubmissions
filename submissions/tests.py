@@ -1,33 +1,34 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase as TC
 from submissions.models import Disposition, Submission, Publisher
 from django.contrib.auth.models import User
-from django.test import SimpleTestCase as stc
+# from django.test import SimpleTestCase as stc
 
-class SubmissionsTestCase(TestCase):
+class LoginTestCase(TC):
+    fixtures = ['users']
+    
+    def setUp(self):
+        self.client = Client()
+       
+    def test_login_error(self):
+        response = self.client.post('/accounts/login/',{'username':'bond','password':'xxx'}, follow=True)
+        TC.assertContains(self, response=response, text='Login')
+        
+    def test_login_success(self):
+        response = self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
+        TC.assertContains(self,response=response, text='Logout')
+        
+class SubmissionsTestCase(TC):
     fixtures = ['users', 'publishers', 'dispositions', 'submissions']
     
     def setUp(self):
         self.client = Client()
-        print('................running setUp()............')
-
-        
-    def test_fixtures_loaded(self):
-        print(User.objects.get(pk=1).last_name) # So remember info on User model in contrib.
-        print(Disposition.objects.get(pk=1).disposition)
-        print(Publisher.objects.get(pk=1).publisher)
-        print(Submission.objects.get(pk=1).story)
-        
-    def test_login_error(self):
-        response = self.client.post('/accounts/login/',{'username':'bond','password':'xxx'}, follow=True)
-        stc.assertContains(self, response=response, text='Login')
-        
-    def test_login_success(self):
-        response = self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
-        stc.assertContains(self,response=response, text='Logout')
         
     def test_create_submission(self):
         # Must be logged in. 'get' brings up entry page. 'post', submits data and brings up submissions page
-        self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
+        self.client.post('/accounts/login/',{'username':'mark','password':'foobar'}, follow=True)
+        response = self.client.get('/submissions/add/', follow=True)
+#         print(response.content)        
+        TC.assertContains(self, response=response, text='Add New submission')
         response = self.client.post('/submissions/add/',{
           "story": "Story-Four",
           "word_count": 4000,
@@ -39,4 +40,42 @@ class SubmissionsTestCase(TestCase):
           "user": 3
         }, follow=True)
 #         print(response.content)
-        stc.assertContains(self, response=response, text='Story-Four')
+        TC.assertContains(self, response=response, text='Story-Four')
+        TC.assertNotContains(self, response=response, text='Story-One')
+        
+    def test_search(self):
+        response = self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
+        TC.assertContains(self, response=response, text='Story-One')
+        response = self.client.post('/submissions/search/',{'publisher_id':2, 'disposition_id': 2}, follow = True)
+        TC.assertContains(self, response=response, text='Story-Two')         
+        TC.assertNotContains(self, response=response, text = 'Story-One')
+        
+class PublishersTestCase(TC):
+    fixtures = ['users', 'publishers']
+    
+    def setUp(self):
+        self.client = Client()
+        self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
+        
+    def test_create_publisher(self):
+        response = self.client.post('/submissions/publisher/add', {
+          "publisher": "Azimov's",
+          "web_address": "http://www.asimovs.com/contact-us/writers-guidelines/",
+          "min_words": 1000,
+          "max_words": 20000,
+          "remarks": "Azimov's wants stories with some literary merit."
+        }, follow=True)
+        TC.assertContains(self, response=response, text='Add New Publisher')
+        
+        response = self.client.post('/submissions/publisher/add/', {
+          "publisher": "XXXXX",
+          "web_address": "http://www.asimovs.com/contact-us/writers-guidelines/",
+          "min_words": 1000,
+          "max_words": 20000,
+          "remarks": "Azimov's wants stories with some literary merit."
+        }, follow=True)
+#         print(response.content)
+        TC.assertContains(self, response=response, text = 'XXXXX')
+         
+                             
+        

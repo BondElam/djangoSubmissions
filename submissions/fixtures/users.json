@@ -21,7 +21,7 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-      "password": "pbkdf2_sha256$100000$pKCqe3HoUNEi$+0etaqgf2eHdZlSRpJScOcahlazlEi4rTPjVSRVrsLI=",
+      "password":  "pbkdf2_sha256$100000$Y9pCelGY3xVC$IQOBrYTk5+7FOBBuDURaN0iiWW/RWlTUczKNjj4G9Rc=",
       "last_login": "2018-11-08T19:13:45.364Z",
       "is_superuser": false,
       "username": "mark",
