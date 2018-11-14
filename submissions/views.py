@@ -70,11 +70,12 @@ def delete_submission(request, pk):
 @login_required
 def delete_publisher(request, pk):    
     # form without action value will bounce back to self, in this case as POST    
+    wp_file = request.GET['wp_file']
     context = {}  
     if request.method == "POST":  
         try:
-            Publisher.objects.filter(pk=pk).delete()
-            return redirect('/submissions/publishers?wp_file=__all')
+            Publisher.objects.filter(pk=pk).delete()            
+            return redirect('/submissions/publishers?wp_file=' + wp_file)
         except Exception as e:
             print(e)
             context['errormessage'] = 'You cannot delete a publisher associated with a current submission.'            
@@ -91,7 +92,7 @@ def delete_publisher(request, pk):
     context['instruction'] = instruction_text('delete')
     context['buttonlabel'] = 'Delete'
     context['instruction_class'] = 'warning'
-    context['cancelpath'] = '/submissions/publishers?wp_file=__all'
+    context['cancelpath'] = '/submissions/publishers?wp_file=' + wp_file
      
     return render(request, 'delete_view.html', context)
 
@@ -225,42 +226,62 @@ class PublisherListView(LoginRequiredMixin, ListView):
     template_name = 'publishers.html'
 
     def get_queryset(self):
-        wp_file = self.request.GET['wp_file']
-        if wp_file == '__all':
+        self.wp_file = self.request.GET['wp_file']
+        print('................in get_querryset')
+        print(self.wp_file)
+        if self.wp_file == '__all':
             queryset = Publisher.objects.all().order_by('publisher')
         else:
-            pos = wp_file.find('.')
+            pos = self.wp_file.find('.')
             if pos >=0:
-                wp_file = wp_file[0:pos]
-            used_ids = Submission.objects.filter(file__icontains = wp_file).values('publisher_id').distinct()                
+                self.wp_file = self.wp_file[0:pos]
+            used_ids = Submission.objects.filter(file__icontains = self.wp_file).values('publisher_id').distinct()                
             queryset = Publisher.objects.exclude(id__in = used_ids)            
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(PublisherListView, self).get_context_data(**kwargs)
+        if self.wp_file == '__all':
+            context['pagetitle'] = "All Publishers"
+            context['wp_file'] = '__all'
+        else:
+            context['pagetitle'] = "Available Publishers for '" + self.wp_file + "'"
+            context['wp_file'] = self.wp_file
+        return context
 
 class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
-    success_url = '/submissions/publishers?wp_file=__all'
+#     success_url = '/submissions/publishers?wp_file=__all'
 #     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
+#         print('............in form valid........')
         form.instance.created_by = self.request.user
         return super().form_valid(form)
     
     def get_context_data(self, **kwargs):
+        self.wp_file = self.request.GET['wp_file']
         context = super(PublisherCreate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Add New Publisher'
         context['instructions'] = instruction_text('create')
         context['instructionsclass'] ='instructions'
         context['buttonlabel'] = 'Add'
-        context['cancelpath'] = '/submissions/publishers?wp_file=__all'
+        context['cancelpath'] = '/submissions/publishers?wp_file=' + self.wp_file
         return context
+    
+    def get_success_url(self):
+        self.wp_file = self.request.GET['wp_file']
+#         print('......................... wp file:' + self.wp_file)
+        return '/submissions/publishers?wp_file='+ self.wp_file
+        
 
 class PublisherUpdate(LoginRequiredMixin, UpdateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
-    success_url = '/submissions/publishers?wp_file=__all'
+#     success_url = '/submissions/publishers?wp_file=__all'
     
     def get_context_data(self, **kwargs):
         context = super(PublisherUpdate, self).get_context_data(**kwargs)
@@ -270,6 +291,11 @@ class PublisherUpdate(LoginRequiredMixin, UpdateView):
         context['instructionsclass'] = 'instructions'
         context['cancelpath'] = '/submissions/publishers?wp_file=__all'
         return context
+    
+    def get_success_url(self):
+        self.wp_file = self.request.GET['wp_file']
+#         print(self.wp_file)
+        return '/submissions/publishers?wp_file='+ self.wp_file
 
 class DispositionListView(LoginRequiredMixin, ListView):
     model = Disposition

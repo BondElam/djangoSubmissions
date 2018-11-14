@@ -57,17 +57,19 @@ class PublishersTestCase(TC):
         self.client = Client()
         self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
         
-    def test_create_publisher(self):
-        response = self.client.post('/submissions/publisher/add', {
+    def test_create_duplicate_publisher(self):
+        response = self.client.post('/submissions/publisher/add/?wp_file=__all', {
           "publisher": "Azimov's",
           "web_address": "http://www.asimovs.com/contact-us/writers-guidelines/",
           "min_words": 1000,
           "max_words": 20000,
           "remarks": "Azimov's wants stories with some literary merit."
         }, follow=True)
+#         print(response.content)
         TC.assertContains(self, response=response, text='Add New Publisher')
         
-        response = self.client.post('/submissions/publisher/add/', {
+    def test_create_unique_publisher(self):         
+        response = self.client.post('/submissions/publisher/add/?wp_file=__all', {
           "publisher": "XXXXX",
           "web_address": "http://www.asimovs.com/contact-us/writers-guidelines/",
           "min_words": 1000,
@@ -76,6 +78,10 @@ class PublishersTestCase(TC):
         }, follow=True)
 #         print(response.content)
         TC.assertContains(self, response=response, text = 'XXXXX')
+        
+    def test_available_publishers(self):
+        response = self.client.get('/submissions/publishers/?wp_file=story-one.01.docx', follow=True)
+        TC.assertNotContains(self, response=response, text='Analog')
          
                              
         

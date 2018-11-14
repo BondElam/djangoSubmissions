@@ -19,7 +19,7 @@
     "fields": {
       "story": "Story-Two",
       "word_count": 2000,
-      "file": "story-one.02.docx",
+      "file": "story-two.02.docx",
       "date_submitted": "1999-06-29",
       "disposition_date": "1999-06-29",
       "publisher": 2,
@@ -33,7 +33,7 @@
     "fields": {
       "story": "Story-Three",
       "word_count": 3000,
-      "file": "story-three.01.docx",
+      "file": "story-three.03.docx",
       "date_submitted": "1999-06-29",
       "disposition_date": "1999-06-29",
       "publisher": 3,
