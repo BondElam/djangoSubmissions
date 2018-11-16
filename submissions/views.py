@@ -227,16 +227,20 @@ class PublisherListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         self.wp_file = self.request.GET['wp_file']
-        print('................in get_querryset')
-        print(self.wp_file)
+#         print(self.request)
+#         print(self.args)
+#         print(self.kwargs)
+#         print(self.wp_file)
         if self.wp_file == '__all':
             queryset = Publisher.objects.all().order_by('publisher')
         else:
             pos = self.wp_file.find('.')
             if pos >=0:
                 self.wp_file = self.wp_file[0:pos]
-            used_ids = Submission.objects.filter(file__icontains = self.wp_file).values('publisher_id').distinct()                
-            queryset = Publisher.objects.exclude(id__in = used_ids)            
+            used_ids = Submission.objects.filter(file__icontains = self.wp_file).values('publisher_id').distinct()
+#             print(used_ids)                
+            queryset = Publisher.objects.exclude(id__in = used_ids)   
+#         print(queryset)         
         return queryset
     
     def get_context_data(self, **kwargs):
@@ -284,17 +288,19 @@ class PublisherUpdate(LoginRequiredMixin, UpdateView):
 #     success_url = '/submissions/publishers?wp_file=__all'
     
     def get_context_data(self, **kwargs):
+        self.wp_file = self.request.GET['wp_file']
         context = super(PublisherUpdate, self).get_context_data(**kwargs)
         context['pagetitle'] = 'Update Publisher Information'
         context['instructions'] = instruction_text('update')
         context['buttonlabel'] = 'Update'
         context['instructionsclass'] = 'instructions'
-        context['cancelpath'] = '/submissions/publishers?wp_file=__all'
+        context['cancelpath'] = '/submissions/publishers?wp_file=' + self.wp_file
+#         print(context)
         return context
     
     def get_success_url(self):
         self.wp_file = self.request.GET['wp_file']
-#         print(self.wp_file)
+        print('..................wp_file: ' + self.wp_file)
         return '/submissions/publishers?wp_file='+ self.wp_file
 
 class DispositionListView(LoginRequiredMixin, ListView):

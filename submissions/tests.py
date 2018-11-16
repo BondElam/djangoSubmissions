@@ -51,7 +51,7 @@ class SubmissionsTestCase(TC):
         TC.assertNotContains(self, response=response, text = 'Story-One')
         
 class PublishersTestCase(TC):
-    fixtures = ['users', 'publishers']
+    fixtures = ['users', 'publishers', 'submissions', 'dispositions']
     
     def setUp(self):
         self.client = Client()
@@ -66,7 +66,9 @@ class PublishersTestCase(TC):
           "remarks": "Azimov's wants stories with some literary merit."
         }, follow=True)
 #         print(response.content)
-        TC.assertContains(self, response=response, text='Add New Publisher')
+        TC.assertContains(self, response=response, text='Publisher already exists')
+#         messages = response.content
+#         print(messages)
         
     def test_create_unique_publisher(self):         
         response = self.client.post('/submissions/publisher/add/?wp_file=__all', {
@@ -80,8 +82,21 @@ class PublishersTestCase(TC):
         TC.assertContains(self, response=response, text = 'XXXXX')
         
     def test_available_publishers(self):
+        
+        # Test initial view
         response = self.client.get('/submissions/publishers/?wp_file=story-one.01.docx', follow=True)
         TC.assertNotContains(self, response=response, text='Analog')
-         
+        
+        # Test with update from initial view
+#         response = self.client.get('/submissions/publisher/2/?wp_file=story-one.01.docx', follow = True)
+        response = self.client.post('/submissions/publisher/2/?wp_file=story-one.01.docx', {
+          "publisher": "F&SF",
+          "web_address": "https://www.sfsite.com/fsf/glines.htm",
+          "min_words": 1000,
+          "max_words": 25000,
+          "remarks": "F&SF has no formula for fiction. The speculative element may be slight, but it should be present."
+        }, follow=True)
+        TC.assertNotContains(self, response=response, text='Analog')
+        
                              
         
