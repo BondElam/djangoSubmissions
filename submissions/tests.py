@@ -26,10 +26,10 @@ class SubmissionsTestCase(TC):
     def test_create_submission(self):
         # Must be logged in. 'get' brings up entry page. 'post', submits data and brings up submissions page
         self.client.post('/accounts/login/',{'username':'mark','password':'foobar'}, follow=True)
-        response = self.client.get('/submissions/add/', follow=True)
-#         print(response.content)        
+        response = self.client.get('/submissions/add/', follow=True)      
         TC.assertContains(self, response=response, text='Add New submission')
         response = self.client.post('/submissions/add/',{
+          "pk": 4,
           "story": "Story-Four",
           "word_count": 4000,
           "file": "story-four.01.docx",
@@ -37,11 +37,13 @@ class SubmissionsTestCase(TC):
           "disposition_date": "1999-06-29",
           "publisher": 3,
           "disposition": 3,
-          "user": 3
+          "user": 2
         }, follow=True)
 #         print(response.content)
         TC.assertContains(self, response=response, text='Story-Four')
         TC.assertNotContains(self, response=response, text='Story-One')
+#         response = self.client.post('/submissions/delete/4/', follow=True)
+#         TC.assertNotContains(self, response=response, text='Story-Four')
         
     def test_search(self):
         response = self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
@@ -49,6 +51,14 @@ class SubmissionsTestCase(TC):
         response = self.client.post('/submissions/search/',{'publisher_id':2, 'disposition_id': 2}, follow = True)
         TC.assertContains(self, response=response, text='Story-Two')         
         TC.assertNotContains(self, response=response, text = 'Story-One')
+        
+    def test_delete(self):
+        self.client.post('/accounts/login/',{'username':'mark','password':'foobar'}, follow=True)
+        response = self.client.get('/submissions/', follow=True)
+        print(response.content)
+        TC.assertContains(self, response=response, text='Story-Three')
+        response = self.client.post('/submissions/delete/3/', follow=True)
+        TC.assertNotContains(self, response=response, text='Story-Three')
         
 class PublishersTestCase(TC):
     fixtures = ['users', 'publishers', 'submissions', 'dispositions']
