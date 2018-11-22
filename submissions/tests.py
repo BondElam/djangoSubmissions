@@ -55,7 +55,7 @@ class SubmissionsTestCase(TC):
     def test_delete(self):
         self.client.post('/accounts/login/',{'username':'mark','password':'foobar'}, follow=True)
         response = self.client.get('/submissions/', follow=True)
-        print(response.content)
+#         print(response.content)
         TC.assertContains(self, response=response, text='Story-Three')
         response = self.client.post('/submissions/delete/3/', follow=True)
         TC.assertNotContains(self, response=response, text='Story-Three')

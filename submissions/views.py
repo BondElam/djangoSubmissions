@@ -257,11 +257,8 @@ class PublisherCreate(LoginRequiredMixin, CreateView):
     model = Publisher
     fields = ['publisher', 'web_address', 'min_words', 'max_words', 'remarks']
     template_name = 'detail_view.html'
-#     success_url = '/submissions/publishers?wp_file=__all'
-#     initial = {'bond': 'my_button'}
     
     def form_valid(self, form):
-#         print('............in form valid........')
         form.instance.created_by = self.request.user
         return super().form_valid(form)
     
@@ -300,7 +297,7 @@ class PublisherUpdate(LoginRequiredMixin, UpdateView):
     
     def get_success_url(self):
         self.wp_file = self.request.GET['wp_file']
-        print('..................wp_file: ' + self.wp_file)
+#         print('..................wp_file: ' + self.wp_file)
         return '/submissions/publishers?wp_file='+ self.wp_file
 
 class DispositionListView(LoginRequiredMixin, ListView):
@@ -352,15 +349,20 @@ class UserListView(LoginRequiredMixin, ListView):
     template_name = 'users.html'
     ordering = ['username']
     
+    def get_context_data(self, **kwargs):
+        context = super(UserListView, self).get_context_data(**kwargs)
+        if self.request.user.is_superuser:
+            context['superuser'] = True
+#         else:
+#             context['superuser'] = 'no'
+
+        return context
+    
 class UserCreate(LoginRequiredMixin, CreateView):
     model = User
     fields = ['username' , 'first_name', 'last_name', 'email']
     template_name = 'detail_view.html'
     success_url = '/submissions/users/'
-    
-#     def form_valid(self, form):
-#         form.instance.created_by = self.request.user
-#         return super().form_valid(form)
     
     def form_valid(self, form):
         self.object = form.save(commit=False)                         
@@ -383,6 +385,8 @@ class UserCreate(LoginRequiredMixin, CreateView):
     
     def get_form(self, **kwargs):
         form = super(UserCreate, self).get_form(**kwargs)
+        if self.request.user.is_superuser:
+            form.fields['is_superuser'] = forms.BooleanField(required=False)
         form.fields['password'] = forms.CharField()
         form.fields['confirm_password'] = forms.CharField()
         return form
@@ -394,7 +398,9 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     success_url = '/submissions/users/'
     
     def get_context_data(self, **kwargs):
+        print(self.request.user.username)
         context = super(UserUpdate, self).get_context_data(**kwargs)
+        print(context)
         context['pagetitle'] = 'Update User Information'
         instructions = instruction_text('update')
         instructions += ' If you do not want to update the password, leave the fields blank.'
@@ -406,6 +412,10 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     
     def get_form(self, **kwargs):
         form = super(UserUpdate, self).get_form(**kwargs)
+        if self.request.user.is_superuser:
+            form.fields['is_superuser'] = forms.BooleanField(required=False)
+            form.fields['is_superuser'].initial = self.object.is_superuser
+            
         form.fields['new_password'] = forms.CharField(required=False)
         form.fields['confirm_password'] = forms.CharField(required=False)
         return form
@@ -416,17 +426,10 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
         current_user_id = self.request.user.id                       
         if form['new_password'].value() == form['confirm_password'].value():
             if form['new_password'].value(): # truthy works here
-#                 print('In update password...................')
-#                 print(self.request)
-#                 print(self.object.id)
-#                 print(self.request.user.id)
                 self.object.set_password(form['new_password'].value())   
 
             self.object.save()
             if changed_password_id == current_user_id:
-#                 print('in login user after password change')
-#                 print(self.request.user)
-#                 print(self.object.username)
                 user = authenticate(username=self.object.username, password=form['new_password'].value())
                 login(self.request, user)
             return super(UserUpdate, self).form_valid(form)
