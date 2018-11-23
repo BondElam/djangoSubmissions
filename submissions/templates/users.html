@@ -8,9 +8,9 @@
 	  <table class='table-forms' >
 	  	  	<tr>
 	  			<th style='text-align: left'>Full Name</th>
-	  			<th>User Name</th>
+	  			<th style='text-align:left;'>User</th>
 	  			{% if superuser %}
-	  				<th>Super User</th>
+	  				<th>Super</th>
 	  			{% endif %}
 	  			<th>               </th>
 	  		</tr>
@@ -19,7 +19,11 @@
 	  			<td>{{user.first_name}} {{user.last_name}}</td>
 	  			<td style='text-align:left; '>{{user.username}}</td>
 	  			{% if superuser  %}
-	  				<td>{{user.is_superuser}}</td>
+	  				<td style='text-align:center;'> <input type="checkbox" name="is_superuser" onclick='return false;' 
+	  				{% if user.is_superuser %}
+	  					checked
+	  				{% endif %}
+	  				 ></td>
 	  			{% endif %} 	
 	  			<td>
 	  				<a href='/submissions/user/{{user.id}}'>Edit</a>     
@@ -28,8 +32,13 @@
 	  		</tr>
 	  	{% endfor %}
 	  </table>	  
-	  <a href='/submissions/user/add' class='button'>Add New</a>
-	  <a href='/submissions/' class='button'>Cancel</a>
+	  {% if superuser %}
+		  <a href='/submissions/user/add' class='button'>Add New</a>
+		  <a href='/submissions/' class='button'>Cancel</a>
+	  {% else %}
+		  <a href='/submissions/' class='button'>Close</a>	  
+	  {% endif %}
+		  
 	</form> 
 </div>
 {% endblock %}

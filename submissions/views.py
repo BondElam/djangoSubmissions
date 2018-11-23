@@ -353,10 +353,13 @@ class UserListView(LoginRequiredMixin, ListView):
         context = super(UserListView, self).get_context_data(**kwargs)
         if self.request.user.is_superuser:
             context['superuser'] = True
-#         else:
-#             context['superuser'] = 'no'
-
         return context
+    
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return User.objects.all().order_by('username')
+        else:
+            return User.objects.filter(pk=self.request.user.id)        
     
 class UserCreate(LoginRequiredMixin, CreateView):
     model = User
@@ -367,7 +370,11 @@ class UserCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)                         
         if form['password'].value() == form['confirm_password'].value():
-            self.object.set_password(form['password'].value())    
+            self.object.set_password(form['password'].value())   
+            if form['is_superuser'].value():
+                self.object.is_superuser = form['is_superuser'].value() 
+            else:
+                self.object.is_superuser = False
             self.object.save()
             return super(UserCreate, self).form_valid(form)
         else:
@@ -427,11 +434,17 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
         if form['new_password'].value() == form['confirm_password'].value():
             if form['new_password'].value(): # truthy works here
                 self.object.set_password(form['new_password'].value())   
-
+            if self.request.user.is_superuser:
+                if form['is_superuser'].value():
+                    self.object.is_superuser = form['is_superuser'].value()
+                else:
+                    self.object.is_superuser = False
             self.object.save()
             if changed_password_id == current_user_id:
                 user = authenticate(username=self.object.username, password=form['new_password'].value())
                 login(self.request, user)
+
+ 
             return super(UserUpdate, self).form_valid(form)
         else:
             form.add_error('new_password', "'New Password' and 'Confirm Password' must match.")
