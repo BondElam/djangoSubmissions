@@ -125,6 +125,35 @@ def delete_disposition(request, pk):
     return render(request, 'delete_view.html', context)
 
 @login_required
+def delete_user(request, pk):
+    
+    context = {}
+    if request.method == "POST":  
+        try:
+            User.objects.filter(pk=pk).delete()
+            return redirect('/submissions/users')
+        except Exception as e:
+            print(e)
+            context['errormessage'] = e         
+
+    user = User.objects.filter(pk=pk).values()[0]
+    data = {}
+    for k, v in user.items():
+        kk = k.replace('_', ' ')
+        kk = kk.title()
+        data[kk] = v
+    
+    context['data'] = data 
+    context['pagetitle'] = 'Delete User'
+    context['instruction'] = instruction_text('delete')
+    context['buttonlabel'] = 'Delete'
+    context['instruction_class'] = 'warning'
+    context['cancelpath'] = '/submissions/users'
+     
+    return render(request, 'delete_view.html', context)
+    
+
+@login_required
 def display_submissions(request, sql_dict={'id__gte':0}):
 
     sql_dict['user_id__exact'] = request.user.id
