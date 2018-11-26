@@ -126,8 +126,13 @@ def delete_disposition(request, pk):
 
 @login_required
 def delete_user(request, pk):
-    
-    context = {}
+ 
+    if pk != request.user.id and request.user.is_superuser != True:
+        messages.add_message(request, messages.INFO, 'Only a superuser can delete a user other than him or herself.')
+        return redirect('/submissions/users')   
+
+    context = {}   
+    user = User.objects.filter(pk=pk).values()[0]    
     if request.method == "POST":  
         try:
             User.objects.filter(pk=pk).delete()
@@ -136,7 +141,7 @@ def delete_user(request, pk):
             print(e)
             context['errormessage'] = e         
 
-    user = User.objects.filter(pk=pk).values()[0]
+#     user = User.objects.filter(pk=pk).values()[0]
     data = {}
     for k, v in user.items():
         kk = k.replace('_', ' ')
@@ -434,9 +439,9 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     success_url = '/submissions/users/'
     
     def get_context_data(self, **kwargs):
-        print(self.request.user.username)
+#         print(self.request.user.username)
         context = super(UserUpdate, self).get_context_data(**kwargs)
-        print(context)
+#         print(context)
         context['pagetitle'] = 'Update User Information'
         instructions = instruction_text('update')
         instructions += ' If you do not want to update the password, leave the fields blank.'

@@ -293,6 +293,7 @@ body {
 
 .errorList ul, li {
 	color: rgb(220, 53, 69);
+	list-style-type:none;
 } 
 
 .helptext{

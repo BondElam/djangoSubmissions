@@ -5,6 +5,13 @@
 	<h2>Users</h2>
 	<form method="post">
 	  {% csrf_token %}
+	  {% if messages %}
+		    <ul class="errorList">
+		        {% for message in messages %}
+		            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		        {% endfor %}
+		    </ul>
+	  {% endif %}
 	  <table class='table-forms' >
 	  	  	<tr>
 	  			<th style='text-align: left'>Full Name</th>
