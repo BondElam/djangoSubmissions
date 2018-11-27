@@ -401,6 +401,12 @@ class UserCreate(LoginRequiredMixin, CreateView):
     template_name = 'detail_view.html'
     success_url = '/submissions/users/'
     
+    def get(self, request, *args, **kwargs):        
+        if self.request.user.is_superuser != True:
+            messages.add_message(self.request, messages.INFO, 'Only a superuser can add a new user.')
+            return redirect('/submissions/users')      
+        return super(UserCreate, self).get(request, *args, **kwargs) 
+    
     def form_valid(self, form):
         self.object = form.save(commit=False)                         
         if form['password'].value() == form['confirm_password'].value():
@@ -438,10 +444,14 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'detail_view.html'
     success_url = '/submissions/users/'
     
+    def get(self, request, *args, **kwargs):        
+        if kwargs['pk'] != self.request.user.id and self.request.user.is_superuser != True:
+            messages.add_message(self.request, messages.INFO, 'Only a superuser can update a user other than him or herself.')
+            return redirect('/submissions/users')      
+        return super(UserUpdate, self).get(request, *args, **kwargs) 
+    
     def get_context_data(self, **kwargs):
-#         print(self.request.user.username)
         context = super(UserUpdate, self).get_context_data(**kwargs)
-#         print(context)
         context['pagetitle'] = 'Update User Information'
         instructions = instruction_text('update')
         instructions += ' If you do not want to update the password, leave the fields blank.'
