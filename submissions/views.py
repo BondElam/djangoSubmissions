@@ -31,7 +31,7 @@ def user_login(request):
     return redirect('/accounts/login/')
 
 def user_logout(request):
-    print('in logout ................................................')
+#     print('in logout ................................................')
     logout(request)
     return redirect('/accounts/login/')
     

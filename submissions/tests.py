@@ -1,6 +1,7 @@
 from django.test import Client, TestCase as TC
 from submissions.models import Disposition, Submission, Publisher
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 # from django.test import SimpleTestCase as stc
 
 class LoginTestCase(TC):
@@ -109,4 +110,34 @@ class PublishersTestCase(TC):
         TC.assertNotContains(self, response=response, text='Analog')
         
                              
+class UsersTestCase(TC):
+    fixtures = ['users', 'publishers', 'submissions', 'dispositions']
+    
+    def setUp(self):
+        self.client = Client()
+    
+    def test_catch_unauth_edit(self):
+        self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
+        response = self.client.get('/submissions/user/2', follow=True)
+        TC.assertContains(self, response=response, text='Update User Information')
+        self.client.logout()
+        self.client.post('/accounts/login/',{'username':'mark','password':'foobar'}, follow=True)
+        response = self.client.get('/submissions/user/1', follow=True)
+        TC.assertNotContains(self, response=response, text="Update User Information")
+        TC.assertContains(self, response=response, text='Only a superuser can update')
+
+    def test_catch_unauth_add(self):
+        self.client.post('/accounts/login/',{'username':'bond','password':'foobar'}, follow=True)
+        response = self.client.get('/submissions/user/add/', follow=True)
+        TC.assertContains(self, response=response, text='Add New User')
+        self.client.logout()
+        self.client.post('/accounts/login/',{'username':'mark','password':'foobar'}, follow=True)
+        response = self.client.get('/submissions/user/add/', follow=True)
+        TC.assertNotContains(self, response=response, text="Add New User")
+        TC.assertContains(self, response=response, text='Only a superuser can add')
+       
+        
+        
+        
+        
         
